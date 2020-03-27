@@ -1,19 +1,19 @@
-[Study title]
+Covid19PredictionStudies
 =============
 
-<img src="https://img.shields.io/badge/Study%20Status-Repo%20Created-lightgray.svg" alt="Study Status: Repo Created">
+<img src="https://img.shields.io/badge/Study%20Status-Started-blue.svg" alt="Study Status: Started">
 
-- Analytics use case(s): **-**
-- Study type: **-**
+- Analytics use case(s): **Patient-Level Prediction**
+- Study type: **Clinical Application**
 - Tags: **-**
-- Study lead: **-**
-- Study lead forums tag: **[[Lead tag]](https://forums.ohdsi.org/u/[Lead tag])**
-- Study start date: **-**
+- Study lead: **Jenna Reps, Ross Williams, Peter Rijnbeek**
+- Study lead forums tag: **[jreps](https://forums.ohdsi.org/u/jreps), [Rijnbeek](https://forums.ohdsi.org/u/Rijnbeek)**
+- Study start date: **Mar 26, 2020**
 - Study end date: **-**
 - Protocol: **-**
 - Publications: **-**
 - Results explorer: **-**
 
-[Description (single paragraph)]
+This study repo will include all the prediction model development and validation packages from the covid-19 OHDSI study-a-thon
 
-[You can add other text at this point]
+
