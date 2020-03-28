@@ -16,7 +16,8 @@ Covid19PredictionStudies
 
 This study repo will include all the prediction model development and validation packages from the covid-19 OHDSI study-a-thon
 
-
+Background
+=============
 The Corona Virus Disease 2019 (COVID-19), which started in late 2019 as an epidemic in Wuhan, Hubei Province, China, has been classified as a pandemic and a public health emergency of international concern by the World Health Organisation (WHO) in January 2020.
 
 The OHDSI community has initiated a study-athon to attempt to provide evidence to healthcare providers, governments and patients to best aid in the understanding and treatment of the pandemic. 
@@ -24,35 +25,59 @@ The OHDSI community has initiated a study-athon to attempt to provide evidence t
 
 This specific repository contains the work of the Patient-Level Prediction group in aiding this effort.
 
-There are 4 packages contained here:
 
-Package 1: <todo link> Protocol 1: <todo link>
-  
+Patient-Level Prediction Studies
+=============
+
+There are various packages contained here:
+
+## Predicting which patients with signs/diagnosis will require hospitalization ##
+
 The objective of this study is to inform the triage and early management of patients with diagnosed or suspected COVID-19, by developing and validating a patient-level prediction model to identify adult patients at risk of hospitalization after presenting with flu or flu-like symptoms at a general practitioner (GP), outpatient (OP) or emergency room (ER) visit.  
 
-Package 2: <todo link> Protocol 2:
+When should this model be used? When a patient first has a diagnosis of symptom of covid-19
+
+**Protocol:** <todo link>
+
+### Packages ###
+
+- OHDSI model development: <todo link> 
+- OHDSI model validation: <todo link> 
+- Existing model development: <todo link> 
+
+### Results ###
+
+**Shiny app:** <todo link> 
   
+## Predicting which patients admitted with be more severe (e.g., require ventilator or ICU) ##
+
 The objective of this study is to identify the most high risk patients amongst those who have been admitted to hospital with pneumonia and COVID-19.  
 
-Package 3: <todo link>
-  
-This package contains an existing model that was identffied as a candidate for validation in the COVID-19 setting.
+When should this model be used? When a patient is first admitted to hospital with suspected covid-19
 
-Package 4: <todo link>
+**Protocol:** <todo link>
+
+### Packages ###
+
+- OHDSI model development: <todo link> 
+- OHDSI model validation: <todo link> 
+- Existing model development: <todo link> 
+
+### Results ###
+
+**Shiny app:** <todo link> 
   
+## Simple Models ##
+ 
 This package contains the software used in the development of a simple model to answer the two prediction questions. This was done so as to increase the usability of the models in practice by reducing the featur set, whilst being provided with a benchmark to measure against.
 
+### Packages ###
 
+- OHDSI simple model validation: <todo link> 
 
+### Results ###
 
-
-
-
-
-
-
-
-
+**Shiny app:** <todo link> 
 
 
 
