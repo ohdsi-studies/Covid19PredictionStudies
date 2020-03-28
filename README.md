@@ -43,7 +43,7 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 
 - OHDSI model development: <todo link> 
 - OHDSI model validation: <todo link> 
-- Existing model development: <todo link> 
+- Existing model validation: <todo link> 
 
 ### Results ###
 
@@ -61,7 +61,7 @@ When should this model be used? When a patient is first admitted to hospital wit
 
 - OHDSI model development: <todo link> 
 - OHDSI model validation: <todo link> 
-- Existing model development: <todo link> 
+- Existing model validation: <todo link> 
 
 ### Results ###
 
