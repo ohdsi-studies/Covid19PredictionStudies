@@ -27,15 +27,19 @@ This specific repository contains the work of the Patient-Level Prediction group
 There are 4 packages contained here:
 
 Package 1: <todo link> Protocol 1: <todo link>
+  
 The objective of this study is to inform the triage and early management of patients with diagnosed or suspected COVID-19, by developing and validating a patient-level prediction model to identify adult patients at risk of hospitalization after presenting with flu or flu-like symptoms at a general practitioner (GP), outpatient (OP) or emergency room (ER) visit.  
 
-Package 2: <todo link>
+Package 2: <todo link> Protocol 2:
+  
 The objective of this study is to identify the most high risk patients amongst those who have been admitted to hospital with pneumonia and COVID-19.  
 
 Package 3: <todo link>
+  
 This package contains an existing model that was identffied as a candidate for validation in the COVID-19 setting.
 
 Package 4: <todo link>
+  
 This package contains the software used in the development of a simple model to answer the two prediction questions. This was done so as to increase the usability of the models in practice by reducing the featur set, whilst being provided with a benchmark to measure against.
 
 
