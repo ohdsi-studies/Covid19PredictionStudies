@@ -7,7 +7,7 @@ Covid19PredictionStudies
 - Study type: **Clinical Application**
 - Tags: **-**
 - Study lead: **Jenna Reps, Ross Williams, Peter Rijnbeek**
-- Study lead forums tag: **[jreps](https://forums.ohdsi.org/u/jreps), [Rijnbeek](https://forums.ohdsi.org/u/Rijnbeek)**
+- Study lead forums tag: **[jreps](https://forums.ohdsi.org/u/jreps), [RossW](https://forums.ohdsi.org/u/RossW), [Rijnbeek](https://forums.ohdsi.org/u/Rijnbeek)**
 - Study start date: **Mar 26, 2020**
 - Study end date: **-**
 - Protocol: **-**
