@@ -61,7 +61,7 @@ When should this model be used? When a patient is about to be sent home after be
 ### Packages ###
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSentHomePatients)
-- OHDSI model validation: <todo link> 
+- OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSentHomePatientsValidation)
 - Existing model validation: <todo link> 
 
 ### Results ###
@@ -80,7 +80,7 @@ When should this model be used? When a patient is first admitted to hospital wit
 ### Packages ###
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SevereInHospitalizedPatients)
-- OHDSI model validation: <todo link>
+- OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SevereInHospitalizedPatientsValidation)
 - Existing model validation: <todo link> 
 
 ### Results ###
