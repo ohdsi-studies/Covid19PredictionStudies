@@ -93,13 +93,13 @@ This package contains the software used in the development of a simple model to 
 
 ### Packages ###
 
-- OHDSI simple for Q1: <todo link> 
+- OHDSI simple for Q1: Being Uploaded Soon
 - OHDSI simple for Q2: <todo link> 
 - OHDSI simple for Q3: <todo link> 
 
 ### Results ###
 
-**Shiny app:** <todo link> 
+**Shiny app:** [Link](https://data.ohdsi.org/Covid19PredictionSimpleHospitalizationModel/)
 
 
 
