@@ -1,9 +1,9 @@
-HospitalizationInSymptomaticPatientsValidation
+External Validation of Model Predicting Hospitalization In Patients With An Outpatient Visit with Flu or Flu-like Symptoms
 ======================
 
 Introduction
 ============
-This package contains code to externally validate models for the prediction quesiton <add question> developed on the database <add database>.
+This package contains code to externally validate a model for the prediction quesiton: "within patients who have an outpatient visit with a diagnosis of flu or presenting with flu-like symptoms for the first time in 60 days predict which patients will require hospitalization for pneumonia 0 to 30 days after the visit". Model was developed on the database <add database>.
 
 Features
 ========
@@ -31,18 +31,13 @@ Guide
 A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/HospitalizationInSymptomaticPatientsValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
   
   
-A1. Installing the package from GitHub
+A. Installing the package from GitHub
 ===============
 ```r
 # To install the package from github:
 install.packages("devtools")
-devtools::install_github("ohdsi-studies/HospitalizationInSymptomaticPatientsValidation")
+devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospitalizationInSymptomaticPatientsValidation")
 ```
-
-A2. Building the package inside RStudio
-===============
-  1. Open the validation package project file (file ending in .Rproj) 
-  2. Build the package in RStudio by selecting the 'Build' option in the top right (the tabs contain  'Environment', 'History', 'Connections', 'Build', 'Git') and then clicking on the 'Install and Restart'
 
 B. Getting Started
 ===============
