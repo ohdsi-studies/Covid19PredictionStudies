@@ -54,7 +54,7 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 
 The objective of this study is to identify the most patients at risk of being hospitalized amongst those who have been sent home after presenting with flu and COVID-19 or symptoms.  
 
-When should this model be used? When a patient is about to be sent home after beeing seen with suspected covid-19
+When should this model be used? When a patient is about to be sent home after being seen with suspected covid-19
 
 **Protocol:** [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/blob/master/HospitalizationInSentHomePatients/docs/PLP_protocol_Q1%2BQ2_20200329.docx)
 
@@ -89,7 +89,7 @@ When should this model be used? When a patient is first admitted to hospital wit
   
 ## 4) Simple Models ##
  
-This package contains the software used in the development of a simple model to answer the two prediction questions. This was done so as to increase the usability of the models in practice by reducing the featur set, whilst being provided with a benchmark to measure against.
+This package contains the software used in the development of a simple model to answer the two prediction questions. This was done so as to increase the usability of the models in practice by reducing the feature set, whilst being provided with a benchmark to measure against.
 
 ### Packages ###
 
@@ -104,7 +104,7 @@ This package contains the software used in the development of a simple model to 
 
 
 
-Instructions for particpation
+Instructions for participation
 ============
 To run these studies you need the following software installed:
 
