@@ -11,7 +11,7 @@ Imports:
     SqlRender,
     Cyclops,
     FeatureExtraction,
-    PatientLevelPrediction,
+    PatientLevelPrediction (>= 3.0.14),
     ggplot2,
     ff,
     ffbase,
