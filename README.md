@@ -41,7 +41,7 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 
 ### Packages ###
 
-- OHDSI model development: [Link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatients)
+- OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatients)
 - OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatientsValidation)
 - Existing model validation: <todo link> 
 
