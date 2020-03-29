@@ -54,6 +54,7 @@ execute <- function(connectionDetails,
     createCohorts(connectionDetails,
                   cdmDatabaseSchema=cdmDatabaseSchema,
                   cohortDatabaseSchema=cohortDatabaseSchema,
+                  oracleTempSchema = oracleTempSchema,
                   cohortTable=cohortTable,
                   outputFolder = file.path(outputFolder,databaseName))
   }
