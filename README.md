@@ -66,7 +66,7 @@ When should this model be used? When a patient is about to be sent home after be
 
 ### Results ###
 
-**Shiny app:** <todo link>
+**Shiny app:** [link](https://data.ohdsi.org/Covid19PredictingHospitilizationAfterSentHome/)
   
   
 ## 3) Predicting which patients admitted with be more severe (e.g., require ventilator or ICU) ##
