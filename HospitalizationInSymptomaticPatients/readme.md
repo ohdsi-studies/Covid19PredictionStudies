@@ -1,11 +1,12 @@
-A Package For Developing Models Predicting Patients Requiring Hospitalization When Initially Presenting with Flu or Flu like symptoms (To be investiagted for the use on Patients, with or suspected to have, Covid-19)
+A Package For Developing Models Predicting Patients Requiring Hospitalization When Initially Presenting with Flu or Flu like symptoms (To be investigated for the use on Patients, with or suspected to have, Covid-19)
 ========================================================
 
-This package will develop and externally validate models that predict hospitilization due to pneumonia within 0 days to 30 days after being seen in an outpatient setting for flu or flu symptoms (but no sypmtoms in the prior 60 days) using the OHDSI PatientLevelPrediction framework and tools.
+This package will develop and externally validate models that predict hospitalization due to pneumonia within 0 days to 30 days after being seen in an outpatient setting for flu or flu symptoms (but no symptoms in the prior 60 days) using the OHDSI PatientLevelPrediction framework and tools.
 
-This model will be used when a patient visits his/her doctor with initial flu (or covid-19 - to be tested) or flu-like symptoms to determine their risk of requiring future hospitalization due to pneumonia.  This could be used by medical staff to aid their decision of reffering the patient to be hospitalized or potentially as a phone screen when the patient first notices flu-like symptoms to identify which patients should go to hospital.
+At initial disease presentation it is difficult to determine which suspected COVID-19 patients are likely to develop secondary infections, such as pneumonia or acute respiratory distress syndrome (ARDS), and therefore require hospitalization. Currently, patients are admitted based on a simple age and health risk assessment. The WHO Risk Communication Guidance distinguishes two distinct categories of patients at high risk of severe disease: those older than 60 years and those with “underlying medical conditions” which is non-specific. Early identification of patients who will require hospital care will ensure these patients have the best chance of receiving optimal care. Further interventions assessed earlier on can reduce the severity of symptoms and as such reduce the resources required for each patient. Moreover, reducing hospital admissions that are not strictly necessary avoids burden on the already stressed healthcare system and prevents unnecessary medical interventions.
 
-[add background]
+The objective of this study is to inform the triage and early management of patients with diagnosed or suspected COVID-19 by developing and validating patient-level prediction models. In particular, we aim to identify adult patients who are at risk of hospitalization after presenting for the first time with flu or flu-like symptoms at a GP/OP or ER visit. Due to the rapid onset of the COVID-19 pandemic a current barrier to producing a patient-level prediction model for patients with COVID-19 is the low numbers of patients that are available to study in EHR and claims systems. As such we have chosen to use flu or flu-like symptoms as a proxy for COVID-19. This is due to the fact that both disease types share some similarities, for example symptom presentation at onset and it appears that similar groups of patients are at risk of negative outcomes in both disease trajectories, although COVID-19 does appear to have higher associated risks. After developing a model on flu and flu-like symptoms we will then validate in the COVID-19 patient datasets as they become available. If the models are shown to be transportable then this will increase the speed at which they can be disseminated and as such have a greater impact on the attempt to control the most negative impacts of the pandemic.
+
 
 Suggested Requirements
 ===================
@@ -14,7 +15,7 @@ Suggested Requirements
 - Python
 - Data in the OMOP CDM
 
-Instructions To Intall Package
+Instructions To Install Package
 ===================
 
 To install please install PatientLevelPrediction and the study package by opening R and running:
@@ -60,7 +61,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
 
 # Add the database containing the OMOP CDM data
 cdmDatabaseSchema <- 'cdm database schema'
-# Add a sharebale name for the database containing the OMOP CDM data
+# Add a shareable name for the database containing the OMOP CDM data
 cdmDatabaseName <- 'a friendly shareable  name for your database'
 # Add a database with read/write access as this is where the cohorts will be generated
 cohortDatabaseSchema <- 'work database schema'
