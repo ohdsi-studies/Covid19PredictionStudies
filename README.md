@@ -37,7 +37,7 @@ The objective of this study is to inform the triage and early management of pati
 
 When should this model be used? When a patient first has a diagnosis of symptom of covid-19
 
-**Protocol:** <todo link>
+**Protocol:** [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/blob/master/HospitalizationInSymptomaticPatients/docs/PLP_protocol_Q1%2BQ2_20200329.docx)
 
 ### Packages ###
 
@@ -56,7 +56,7 @@ The objective of this study is to identify the most patients at risk of being ho
 
 When should this model be used? When a patient is about to be sent home after beeing seen with suspected covid-19
 
-**Protocol:** <todo link>
+**Protocol:** [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/blob/master/HospitalizationInSentHomePatients/docs/PLP_protocol_Q1%2BQ2_20200329.docx)
 
 ### Packages ###
 
@@ -75,7 +75,7 @@ The objective of this study is to identify the most high risk patients amongst t
 
 When should this model be used? When a patient is first admitted to hospital with suspected covid-19
 
-**Protocol:** <todo link>
+**Protocol:** [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/blob/master/SevereInHospitalizedPatients/docs/PLP_protocol_Q3_20200329.docx)
 
 ### Packages ###
 
