@@ -41,15 +41,35 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 
 ### Packages ###
 
-- OHDSI model development: <todo link> 
+- OHDSI model development: [Link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatients)
 - OHDSI model validation: <todo link> 
 - Existing model validation: <todo link> 
 
 ### Results ###
 
-**Shiny app:** <todo link> 
+**Shiny app:** [link](https://data.ohdsi.org/Covid19PredictingHospitalizationInFluPatients/)
+
+
+## 2) Predicting which patients send home after being sent outpatient for flu or symptoms end up in hospital 2-30 days later   ##
+
+The objective of this study is to identify the most patients at risk of being hospitalized amongst those who have been sent home after presenting with flu and COVID-19 or symptoms.  
+
+When should this model be used? When a patient is about to be sent home after beeing seen with suspected covid-19
+
+**Protocol:** <todo link>
+
+### Packages ###
+
+- OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSentHomePatients)
+- OHDSI model validation: <todo link> 
+- Existing model validation: <todo link> 
+
+### Results ###
+
+**Shiny app:** <todo link>
   
-## 2) Predicting which patients admitted with be more severe (e.g., require ventilator or ICU) ##
+  
+## 3) Predicting which patients admitted with be more severe (e.g., require ventilator or ICU) ##
 
 The objective of this study is to identify the most high risk patients amongst those who have been admitted to hospital with pneumonia and COVID-19.  
 
@@ -59,15 +79,15 @@ When should this model be used? When a patient is first admitted to hospital wit
 
 ### Packages ###
 
-- OHDSI model development: <todo link> 
+- OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SevereInHospitalizedPatients)
 - OHDSI model validation: <todo link> 
 - Existing model validation: <todo link> 
 
 ### Results ###
 
-**Shiny app:** <todo link> 
+**Shiny app:** [link](https://data.ohdsi.org/PredictingSevereInHospResults/)
   
-## 3) Simple Models ##
+## 4) Simple Models ##
  
 This package contains the software used in the development of a simple model to answer the two prediction questions. This was done so as to increase the usability of the models in practice by reducing the featur set, whilst being provided with a benchmark to measure against.
 
