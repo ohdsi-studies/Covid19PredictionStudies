@@ -26,7 +26,7 @@ To install please install PatientLevelPrediction and the study package by openin
   ##PatientLevelPrediction::checkPlpInstallation()
   
   # install the network package
-  devtools::install_github("ohdsi-studies/HospitalizationInSymptomaticPatients")
+  devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospitalizationInSymptomaticPatients")
 ```
 
 PatientLevelPrediction may require additional R package to be installed.
