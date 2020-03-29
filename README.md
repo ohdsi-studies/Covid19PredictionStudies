@@ -80,7 +80,7 @@ When should this model be used? When a patient is first admitted to hospital wit
 ### Packages ###
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SevereInHospitalizedPatients)
-- OHDSI model validation: <todo link> 
+- OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatientsValidation)
 - Existing model validation: <todo link> 
 
 ### Results ###
