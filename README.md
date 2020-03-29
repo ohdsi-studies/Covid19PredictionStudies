@@ -31,7 +31,7 @@ Patient-Level Prediction Studies
 
 There are various packages contained here:
 
-## Predicting which patients with signs/diagnosis will require hospitalization ##
+## 1) Predicting which patients with signs/diagnosis will require hospitalization ##
 
 The objective of this study is to inform the triage and early management of patients with diagnosed or suspected COVID-19, by developing and validating a patient-level prediction model to identify adult patients at risk of hospitalization after presenting with flu or flu-like symptoms at a general practitioner (GP), outpatient (OP) or emergency room (ER) visit.  
 
@@ -43,13 +43,13 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 
 - OHDSI model development: <todo link> 
 - OHDSI model validation: <todo link> 
-- Existing model development: <todo link> 
+- Existing model validation: <todo link> 
 
 ### Results ###
 
 **Shiny app:** <todo link> 
   
-## Predicting which patients admitted with be more severe (e.g., require ventilator or ICU) ##
+## 2) Predicting which patients admitted with be more severe (e.g., require ventilator or ICU) ##
 
 The objective of this study is to identify the most high risk patients amongst those who have been admitted to hospital with pneumonia and COVID-19.  
 
@@ -61,13 +61,13 @@ When should this model be used? When a patient is first admitted to hospital wit
 
 - OHDSI model development: <todo link> 
 - OHDSI model validation: <todo link> 
-- Existing model development: <todo link> 
+- Existing model validation: <todo link> 
 
 ### Results ###
 
 **Shiny app:** <todo link> 
   
-## Simple Models ##
+## 3) Simple Models ##
  
 This package contains the software used in the development of a simple model to answer the two prediction questions. This was done so as to increase the usability of the models in practice by reducing the featur set, whilst being provided with a benchmark to measure against.
 
