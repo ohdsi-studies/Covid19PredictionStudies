@@ -1,13 +1,12 @@
-A Package For Developing Models Predicting Patients Requiring Hospitalization After Being Sent Home From An Outpatient Visit Presenting with Flu or Flu like symptoms (To be investiagted for the use on Patients, with or suspected to have, Covid-19)
+A Package For Developing Models Predicting Patients Requiring Hospitalization After Being Sent Home From An Outpatient Visit Presenting with Flu or Flu like symptoms (To be investigated for the use on Patients, with or suspected to have, Covid-19)
 ========================================================
 
-This package will develop models that predict hospitilization due to pneumonia within 2 days to 30 days after being seen in an outpatient setting for flu or flu symptoms (but no sypmtoms in the prior 60 days) but being sent home using the OHDSI PatientLevelPrediction framework and tools.
+This package will develop models that predict hospitalization due to pneumonia within 2 days to 30 days after being seen in an outpatient setting for flu or flu symptoms (but no symptoms in the prior 60 days) but being sent home using the OHDSI PatientLevelPrediction framework and tools.
 
-The aim of this model is to reasure patients who are anxious about being sent home that their risk is low or to be used by clincians to aid their decision on whether a patient should be sent home. 
+At initial disease presentation it is difficult to determine which suspected COVID-19 patients are likely to develop secondary infections, such as pneumonia or acute respiratory distress syndrome (ARDS), and therefore require hospitalization. Currently, patients are admitted based on a simple age and health risk assessment. The WHO Risk Communication Guidance distinguishes two distinct categories of patients at high risk of severe disease: those older than 60 years and those with “underlying medical conditions” which is non-specific (5). Early identification of patients who will require hospital care will ensure these patients have the best chance of receiving optimal care. Further interventions assessed earlier on can reduce the severity of symptoms and as such reduce the resources required for each patient. Moreover, reducing hospital admissions that are not strictly necessary avoids burden on the already stressed healthcare system and prevents unnecessary medical interventions.
 
-This model will be used when a patient visits his/her doctor with initial flu (or covid-19 - to be tested) or flu-like symptoms to determine their risk of requiring future hospitalization due to pneumonia given they are sent home after this visit.  This could be used by medical staff at the point they are about to send the patient home as a double check that they have not overlooked hospitalization risk factors.
+The objective of this study is to inform the triage and early management of patients with diagnosed or suspected COVID-19 by developing and validating patient-level prediction models. In particular, we aim to identify adult patients who are at risk of hospitalization after being sent home first with flu or flu-like symptoms at a GP/OP or ER visit.
 
-[add background]
 
 Suggested Requirements
 ===================
@@ -19,7 +18,7 @@ Suggested Requirements
 Instructions To Install Package
 ===================
 
-- Share the package by adding it to the 'ohdsi-studies' github repo and get people to install by:
+- Share the package by adding it to the 'ohdsi-studies' GitHub repo and get people to install by:
 ```r
   # get the latest PatientLevelPrediction
   install.packages("devtools")
@@ -60,7 +59,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
 
 # Add the database containing the OMOP CDM data
 cdmDatabaseSchema <- 'cdm database schema'
-# Add a sharebale name for the database containing the OMOP CDM data
+# Add a shareable name for the database containing the OMOP CDM data
 cdmDatabaseName <- 'a friendly shareable  name for your database'
 # Add a database with read/write access as this is where the cohorts will be generated
 cohortDatabaseSchema <- 'work database schema'
