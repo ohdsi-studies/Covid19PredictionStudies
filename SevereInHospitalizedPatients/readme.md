@@ -1,30 +1,35 @@
-A Package Skeleton for Patientl-Level Prediction Studies
+A Package For Developing Models Predicting Severely Ill Patients In Those Admitted To Hospital For Pneumonia (To be investiagted for the use on Patients, with or suspected to have, Covid-19)
 ========================================================
 
-A skeleton package, to be used as a starting point when implementing patient-level prediction studies.
+This package will develop and externally validate models that predict which patients hospitilized due to pneumonia will experience complications or require the ICU within 0 days to 30 days after initial hospitalization using the OHDSI PatientLevelPrediction framework and tools.
 
-Vignette: [Using the package skeleton for patient-level prediction studies](https://raw.githubusercontent.com/OHDSI/StudyProtocolSandbox/master/SevereInHospitalizedPatients/inst/doc/UsingSkeletonPackage.pdf)
+This model will be used when a patient is first hospitalized due to pneumonia  (caused or suspected to be caused by covid-19) to determine their risk of becoming criticall ill.  This could be used by medical staff when patients are admitted to predict future demand for healthcare resources or to prioritize the monitoring of higher risk patients.
 
-For information on how to generate shiny apps using the R skeleton package see: [Creating shiny app for patient-level prediction studies](https://raw.githubusercontent.com/OHDSI/PatientLevelPrediction/testcode/inst/doc/CreatingShinyApp.pdf).  To combine multiple skeleton package results into a single shiny app [see populate multiple shiny app R code code](https://github.com/OHDSI/StudyProtocolSandbox/blob/master/SevereInHospitalizedPatients/extras/populateMultipleShiny.R)
+[add background]
 
-For information on adding custom covariates based on ATLAS cohorts see:  [Adding custom covariates using ATLAS cohorts](https://raw.githubusercontent.com/OHDSI/StudyProtocolSandbox/master/SevereInHospitalizedPatients/inst/doc/AddingCohortCovariates.pdf).
 
 Suggested Requirements
 ===================
 - R studio (https://rstudio.com)
 - Java runtime environment
 - Python
+- Data in the OMOP CDM
 
 
-Instructions To Build Package
+Instructions To Install Package
 ===================
 
-- Open the package project (file ending with '.Rproj') by double clicking it
-- Install any missing dependancies for the package by running:
+To install the study package run:
 ```r
-source('./extras/packageDeps.R')
+  # get the latest PatientLevelPrediction
+  install.packages("devtools")
+  devtools::install_github("OHDSI/PatientLevelPrediction")
+  # check the package (optional)
+  ## PatientLevelPrediction::checkPlpInstallation()
+  
+  # install the network package
+  devtools::install_github("ohdsi-studies/Covid19PredictionStudies/SevereInHospitalizedPatients")
 ```
-- Build the package by clicking the R studio 'Install and Restart' button in the build tab (top right)
 
 
 
@@ -149,21 +154,6 @@ execute(connectionDetails = connectionDetails,
 
 ```
 
-
-Instructions To Share Package
-===================
-
-- Share the package by adding it to the 'ohdsi-studies' github repo and get people to install by:
-```r
-  # get the latest PatientLevelPrediction
-  install.packages("devtools")
-  devtools::install_github("OHDSI/PatientLevelPrediction")
-  # check the package
-  PatientLevelPrediction::checkPlpInstallation()
-  
-  # install the network package
-  devtools::install_github("ohdsi-studies/SevereInHospitalizedPatients")
-```
 
 
 
