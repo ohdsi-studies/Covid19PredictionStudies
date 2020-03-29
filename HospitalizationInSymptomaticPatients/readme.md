@@ -1,31 +1,35 @@
-A Package Skeleton for Patientl-Level Prediction Studies
+A Package For Developing Models Predicting Patients Requiring Hospitalization When Initially Presenting with Flu or Flu like symptoms (To be investiagted for the use on Patients, with or suspected to have, Covid-19)
 ========================================================
 
-A skeleton package, to be used as a starting point when implementing patient-level prediction studies.
+This package will develop and externally validate models that predict hospitilization due to pneumonia within 0 days to 30 days after being seen in an outpatient setting for flu or flu symptoms (but no sypmtoms in the prior 60 days) using the OHDSI PatientLevelPrediction framework and tools.
 
-Vignette: [Using the package skeleton for patient-level prediction studies](https://raw.githubusercontent.com/OHDSI/StudyProtocolSandbox/master/HospitalizationInSymptomaticPatients/inst/doc/UsingSkeletonPackage.pdf)
+This model will be used when a patient visits his/her doctor with initial flu (or covid-19 - to be tested) or flu-like symptoms to determine their risk of requiring future hospitalization due to pneumonia.  This could be used by medical staff to aid their decision of reffering the patient to be hospitalized or potentially as a phone screen when the patient first notices flu-like symptoms to identify which patients should go to hospital.
 
-For information on how to generate shiny apps using the R skeleton package see: [Creating shiny app for patient-level prediction studies](https://raw.githubusercontent.com/OHDSI/PatientLevelPrediction/testcode/inst/doc/CreatingShinyApp.pdf).  To combine multiple skeleton package results into a single shiny app [see populate multiple shiny app R code code](https://github.com/OHDSI/StudyProtocolSandbox/blob/master/HospitalizationInSymptomaticPatients/extras/populateMultipleShiny.R)
-
-For information on adding custom covariates based on ATLAS cohorts see:  [Adding custom covariates using ATLAS cohorts](https://raw.githubusercontent.com/OHDSI/StudyProtocolSandbox/master/HospitalizationInSymptomaticPatients/inst/doc/AddingCohortCovariates.pdf).
+[add background]
 
 Suggested Requirements
 ===================
 - R studio (https://rstudio.com)
 - Java runtime environment
 - Python
+- Data in the OMOP CDM
 
-
-Instructions To Build Package
+Instructions To Intall Package
 ===================
 
-- Open the package project (file ending with '.Rproj') by double clicking it
-- Install any missing dependancies for the package by running:
+To install please install PatientLevelPrediction and the study package by opening R and running:
 ```r
-source('./extras/packageDeps.R')
+  # get the latest PatientLevelPrediction
+  install.packages("devtools")
+  devtools::install_github("OHDSI/PatientLevelPrediction")
+  # check the package (optional)
+  ##PatientLevelPrediction::checkPlpInstallation()
+  
+  # install the network package
+  devtools::install_github("ohdsi-studies/HospitalizationInSymptomaticPatients")
 ```
-- Build the package by clicking the R studio 'Install and Restart' button in the build tab (top right)
 
+PatientLevelPrediction may require additional R package to be installed.
 
 
 Instructions To Run Study
@@ -148,23 +152,6 @@ execute(connectionDetails = connectionDetails,
         minCellCount= 5)
 
 ```
-
-
-Instructions To Share Package
-===================
-
-- Share the package by adding it to the 'ohdsi-studies' github repo and get people to install by:
-```r
-  # get the latest PatientLevelPrediction
-  install.packages("devtools")
-  devtools::install_github("OHDSI/PatientLevelPrediction")
-  # check the package
-  PatientLevelPrediction::checkPlpInstallation()
-  
-  # install the network package
-  devtools::install_github("ohdsi-studies/HospitalizationInSymptomaticPatients")
-```
-
 
 
 # Development status
