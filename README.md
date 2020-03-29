@@ -42,7 +42,7 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 ### Packages ###
 
 - OHDSI model development: [Link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatients)
-- OHDSI model validation: <todo link> 
+- OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatientsValidation)
 - Existing model validation: <todo link> 
 
 ### Results ###
@@ -50,7 +50,7 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 **Shiny app:** [link](https://data.ohdsi.org/Covid19PredictingHospitalizationInFluPatients/)
 
 
-## 2) Predicting which patients send home after being sent outpatient for flu or symptoms end up in hospital 2-30 days later   ##
+## 2) Predicting which patients sent home after being seen at outpatient for flu or flu-like symptoms end up in hospital 2-30 days later   ##
 
 The objective of this study is to identify the most patients at risk of being hospitalized amongst those who have been sent home after presenting with flu and COVID-19 or symptoms.  
 
@@ -69,7 +69,7 @@ When should this model be used? When a patient is about to be sent home after be
 **Shiny app:** [link](https://data.ohdsi.org/Covid19PredictingHospitilizationAfterSentHome/)
   
   
-## 3) Predicting which patients admitted with be more severe (e.g., require ventilator or ICU) ##
+## 3) Predicting which patients admitted to hospital for pneumonia will be more severe (e.g., require ventilator or ICU) ##
 
 The objective of this study is to identify the most high risk patients amongst those who have been admitted to hospital with pneumonia and COVID-19.  
 
@@ -80,7 +80,7 @@ When should this model be used? When a patient is first admitted to hospital wit
 ### Packages ###
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SevereInHospitalizedPatients)
-- OHDSI model validation: <todo link> 
+- OHDSI model validation: <todo link>
 - Existing model validation: <todo link> 
 
 ### Results ###
@@ -93,7 +93,9 @@ This package contains the software used in the development of a simple model to 
 
 ### Packages ###
 
-- OHDSI simple model validation: <todo link> 
+- OHDSI simple for Q1: <todo link> 
+- OHDSI simple for Q2: <todo link> 
+- OHDSI simple for Q3: <todo link> 
 
 ### Results ###
 
