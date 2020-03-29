@@ -1,31 +1,35 @@
-A Package Skeleton for Patientl-Level Prediction Studies
+A Package For Developing Models Predicting Patients Requiring Hospitalization After Being Sent Home From An Outpatient Visit Presenting with Flu or Flu like symptoms (To be investiagted for the use on Patients, with or suspected to have, Covid-19)
 ========================================================
 
-A skeleton package, to be used as a starting point when implementing patient-level prediction studies.
+This package will develop models that predict hospitilization due to pneumonia within 2 days to 30 days after being seen in an outpatient setting for flu or flu symptoms (but no sypmtoms in the prior 60 days) but being sent home using the OHDSI PatientLevelPrediction framework and tools.
 
-Vignette: [Using the package skeleton for patient-level prediction studies](https://raw.githubusercontent.com/OHDSI/StudyProtocolSandbox/master/HospitalizationInSentHomePatients/inst/doc/UsingSkeletonPackage.pdf)
+The aim of this model is to reasure patients who are anxious about being sent home that their risk is low or to be used by clincians to aid their decision on whether a patient should be sent home. 
 
-For information on how to generate shiny apps using the R skeleton package see: [Creating shiny app for patient-level prediction studies](https://raw.githubusercontent.com/OHDSI/PatientLevelPrediction/testcode/inst/doc/CreatingShinyApp.pdf).  To combine multiple skeleton package results into a single shiny app [see populate multiple shiny app R code code](https://github.com/OHDSI/StudyProtocolSandbox/blob/master/HospitalizationInSentHomePatients/extras/populateMultipleShiny.R)
+This model will be used when a patient visits his/her doctor with initial flu (or covid-19 - to be tested) or flu-like symptoms to determine their risk of requiring future hospitalization due to pneumonia given they are sent home after this visit.  This could be used by medical staff at the point they are about to send the patient home as a double check that they have not overlooked hospitalization risk factors.
 
-For information on adding custom covariates based on ATLAS cohorts see:  [Adding custom covariates using ATLAS cohorts](https://raw.githubusercontent.com/OHDSI/StudyProtocolSandbox/master/HospitalizationInSentHomePatients/inst/doc/AddingCohortCovariates.pdf).
+[add background]
 
 Suggested Requirements
 ===================
 - R studio (https://rstudio.com)
 - Java runtime environment
 - Python
+- Data in the OMOP CDM
 
-
-Instructions To Build Package
+Instructions To Install Package
 ===================
 
-- Open the package project (file ending with '.Rproj') by double clicking it
-- Install any missing dependancies for the package by running:
+- Share the package by adding it to the 'ohdsi-studies' github repo and get people to install by:
 ```r
-source('./extras/packageDeps.R')
+  # get the latest PatientLevelPrediction
+  install.packages("devtools")
+  devtools::install_github("OHDSI/PatientLevelPrediction")
+  # check the package (optional)
+  ## PatientLevelPrediction::checkPlpInstallation()
+  
+  # install the network package
+  devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospitalizationInSentHomePatients")
 ```
-- Build the package by clicking the R studio 'Install and Restart' button in the build tab (top right)
-
 
 
 Instructions To Run Study
@@ -147,22 +151,6 @@ execute(connectionDetails = connectionDetails,
         analysisIdDocument = 1
         minCellCount= 5)
 
-```
-
-
-Instructions To Share Package
-===================
-
-- Share the package by adding it to the 'ohdsi-studies' github repo and get people to install by:
-```r
-  # get the latest PatientLevelPrediction
-  install.packages("devtools")
-  devtools::install_github("OHDSI/PatientLevelPrediction")
-  # check the package
-  PatientLevelPrediction::checkPlpInstallation()
-  
-  # install the network package
-  devtools::install_github("ohdsi-studies/HospitalizationInSentHomePatients")
 ```
 
 
