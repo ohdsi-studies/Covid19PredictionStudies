@@ -43,7 +43,7 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatients)
 - OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatientsValidation)
-- Existing model validation: <todo link> 
+- Existing model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/CovidVulnerabilityIndex)
 
 ### Results ###
 
@@ -89,13 +89,11 @@ When should this model be used? When a patient is first admitted to hospital wit
   
 ## 4) Simple Models ##
  
-This package contains the software used in the development of a simple model to answer the two prediction questions. This was done so as to increase the usability of the models in practice by reducing the feature set, whilst being provided with a benchmark to measure against.
+This package contains the software used in the development of a simple model to answer the various prediction questions. This was done so as to increase the usability of the models in practice by reducing the feature set, whilst being provided with a benchmark to measure against.
 
 ### Packages ###
 
-- OHDSI simple for Q1: Being Uploaded Soon
-- OHDSI simple for Q2: <todo link> 
-- OHDSI simple for Q3: <todo link> 
+- OHDSI simple model validation package: Being Uploaded Soon
 
 ### Results ###
 
