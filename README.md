@@ -62,7 +62,7 @@ When should this model be used? When a patient is about to be sent home after be
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSentHomePatients)
 - OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSentHomePatientsValidation)
-- Existing model validation: <todo link> 
+- Existing model validation: No models found
 
 ### Results ###
 
@@ -93,7 +93,7 @@ This package contains the software used in the development of a simple model to 
 
 ### Packages ###
 
-- OHDSI simple model validation package: Being Uploaded Soon
+- OHDSI simple model validation package: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/CovidSimpleModels)
 
 ### Results ###
 
