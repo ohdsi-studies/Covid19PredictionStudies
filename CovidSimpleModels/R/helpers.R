@@ -23,11 +23,11 @@ getData <- function(connectionDetails,
                                                       covariateId = cohortVarsToCreate$cohortId[i]*1000+456,
                                                       cohortDatabaseSchema = cohortDatabaseSchema,
                                                       cohortTable = cohortTable,
-                                                      cohortId = cohortId,
+                                                      cohortId = cohortVarsToCreate$atlasId[i],
                                                       startDay=cohortVarsToCreate$startDay[i], 
                                                       endDay=endDay,
-                                                      count= ifelse(is.null(cohortVarsToCreate$count), F, cohortVarsToCreate$count[i]), 
-                                                      ageInteraction = ifelse(is.null(cohortVarsToCreate$ageInteraction), F, cohortVarsToCreate$ageInteraction[i]))
+                                                      count= as.character(cohortVarsToCreate$count[i]), 
+                                                      ageInteraction = as.character(cohortVarsToCreate$ageInteraction[i]))
   }
   
   result <- PatientLevelPrediction::getPlpData(connectionDetails = connectionDetails,
