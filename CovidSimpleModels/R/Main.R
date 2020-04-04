@@ -184,7 +184,7 @@ execute <- function(connectionDetails,
   if( nrow(studyAnalyses)!=0){
     for(k in 1:nrow(studyAnalyses)){
       sa <- studyAnalyses[k,]
-      predictSimple(connectionDetails = connectionDetails,
+      result <- predictSimple(connectionDetails = connectionDetails,
                     cohortId = sa$cohortId,
                     outcomeIds = sa$outcomeId,
                     model = sa$model,
@@ -208,12 +208,21 @@ execute <- function(connectionDetails,
                     requireTimeAtRisk = requireTimeAtRisk,
                     minTimeAtRisk = minTimeAtRisk,
                     includeAllOutcomes = includeAllOutcomes)
+      
+      if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',sa$analysisId)))){
+        dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
+      }
+      ParallelLogger::logInfo("Saving results")
+      saveRDS(result, file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
+      ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
+      
     }
   }
   
   if (packageResults) {
     ParallelLogger::logInfo("Packaging results")
     packageResults(outputFolder = outputFolder,
+                   cdmDatabaseName = cdmDatabaseName,
                    minCellCount = minCellCount)
   }
    

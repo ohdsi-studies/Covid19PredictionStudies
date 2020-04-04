@@ -85,12 +85,7 @@ predictSimple <- function(connectionDetails,
   result$covariateSummary <- merge(result$covariateSummary, result$model$model[,c('covariateId', 'points')], by ='covariateId')
   result$covariateSummary$covariateValue = result$covariateSummary$points
   
-  if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',analysisId)))){
-    dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',analysisId)), recursive = T)
+ return(result)
   }
-  ParallelLogger::logInfo("Saving results")
-  saveRDS(result, file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',analysisId),'validationResults.rds'))
-  ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',analysisId),'validationResults.rds')))
-}
 
   
