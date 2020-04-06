@@ -115,7 +115,7 @@ getSettings <- function(predictSevereAtOutpatientVisit,
     settingR <- rbind(settingR, c(cohortId = ifelse(usePackageCohorts, 2, 1), 
                              outcomeId = ifelse(usePackageCohorts, 3, 2),
                              analysisId = 4, 
-                             model = 'CriticalAtInpatientVisit,.csv'))
+                             model = 'CriticalAtInpatientVisit.csv'))
   }
   if(predictDeathAtInpatientVisit){
     settingR <- rbind(settingR, c(cohortId = ifelse(usePackageCohorts, 2, 1), 
