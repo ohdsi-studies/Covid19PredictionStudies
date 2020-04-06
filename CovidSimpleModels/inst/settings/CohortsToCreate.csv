@@ -1,5 +1,5 @@
 "cohortId","atlasId","name"
 1,15208,"flu outpatient visit no inpatient same day"
 2,15202,"hospitalization with pneumonia"
-3,15204, "hospitalization with pneumonia ARDS AKI Sepsis and intensive care or death"
-4,15205, "death"
+3,15204,"hospitalization with pneumonia ARDS AKI Sepsis and intensive care or death"
+4,15205,"death"
