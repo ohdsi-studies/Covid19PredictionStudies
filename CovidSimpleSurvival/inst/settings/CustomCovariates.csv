@@ -1,0 +1,17 @@
+"cohortId","atlasId","cohortName","startDay","endDay","count","ageInteraction"
+3,15039,"[COVID v1] Persons with hypertension",-9999,-1,FALSE,FALSE
+4,15040,"[Covid v1] Persons with heart disease",-9999,-1,FALSE,FALSE
+5,15041,"[covid v1] Persons with kidney disease",-9999,-1,FALSE,FALSE
+6,15042,"[Covid v1] Persons with diabetes",-9999,-1,FALSE,FALSE
+7,15043,"[Covid v1] Persons with hyperlipidemia",-9999,-1,FALSE,FALSE
+8,15044,"[Covid v1] Persons with COPD",-9999,-1,FALSE,FALSE
+9,15045,"[Covid v1] persons with cancer",-9999,-1,FALSE,FALSE
+10,15297,"[Covid v1] persons with respiratory failure or insufficency",-9999,-1,FALSE,FALSE
+11,15305,"[Covid v1] persons with liver failure and Ascites",-9999,-1,FALSE,FALSE
+12,15306,"[Covid v1] persons with pressure or skin ulcer",-9999,-1,FALSE,FALSE
+13,15367,"[Covid v1] persons with inpatient or ER visit",-30,-1,FALSE,FALSE
+14,15368,"[Covid v1] persons with anemia",-9999,-1,FALSE,FALSE
+15,15370,"[Covid v1] persons with dementia",-9999,-1,FALSE,FALSE
+16,15371,"[Covid v1] persons with coronary artery disease",-9999,-1,FALSE,FALSE
+
+
