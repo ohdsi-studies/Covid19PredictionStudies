@@ -1,0 +1,28 @@
+2020-04-10 11:55:35	[Main thread]	INFO	HospitalizationInSentHomePatients	execute	Creating cohorts
+2020-04-10 11:57:07	[Main thread]	WARN	utils	write.table	cannot open file './HospitalizationInSentHomePatientsResults/ShinyApp/data/settings.csv': No such file or directory
+2020-04-10 11:57:07	[Main thread]	WARN	utils	write.table	cannot open file './HospitalizationInSentHomePatientsResults/ShinyApp/data/settings.csv': No such file or directory
+2020-04-10 11:57:07	[Main thread]	FATAL	utils	write.table	Error in file(file, ifelse(append, "a", "w")) :    cannot open the connection 
+2020-04-10 11:57:07	[Main thread]	FATAL	utils	write.table	Error in file(file, ifelse(append, "a", "w")) :    cannot open the connection 
+2020-04-10 12:09:48	[Main thread]	WARN	utils	write.table	cannot open file './HospitalizationInSentHomePatientsResults/ShinyApp/data/settings.csv': No such file or directory
+2020-04-10 12:09:48	[Main thread]	FATAL	utils	write.table	Error in file(file, ifelse(append, "a", "w")) :    cannot open the connection 
+2020-04-10 12:10:46	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Shiny App created at: ./HospitalizationInSentHomePatientsResults/ShinyApp/data
+2020-04-10 12:10:47	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Shiny App created at: ./HospitalizationInSentHomePatientsResults/ShinyApp/data
+2020-04-10 12:10:48	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Upload the folder ./HospitalizationInSentHomePatientsResults/ShinyApp/data to the shinyDeploy OHDSI github to share the results with others.
+2020-04-10 12:10:48	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Upload the folder ./HospitalizationInSentHomePatientsResults/ShinyApp/data to the shinyDeploy OHDSI github to share the results with others.
+2020-04-10 14:57:07	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Shiny App created at: ./HospitalizationInSentHomePatientsResults/ShinyApp/data
+2020-04-10 14:57:07	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Upload the folder ./HospitalizationInSentHomePatientsResults/ShinyApp/data to the shinyDeploy OHDSI github to share the results with others.
+2020-04-10 14:57:14	[Main thread]	FATAL			Error in viewMultiplePlp(analysesLocation = outputFolder) :    could not find function "viewMultiplePlp" 
+2020-04-10 15:02:30	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Shiny App created at: ./HospitalizationInSentHomePatientsResults/ShinyApp/data
+2020-04-10 15:02:30	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Upload the folder ./HospitalizationInSentHomePatientsResults/ShinyApp/data to the shinyDeploy OHDSI github to share the results with others.
+2020-04-10 16:47:20	[Main thread]	FATAL			Error in performanceEvaluation[, 2] : incorrect number of dimensions 
+2020-04-10 16:54:51	[Main thread]	FATAL			Error: object 'analysisId' not found 
+2020-04-10 16:55:11	[Main thread]	FATAL			Error in plp9[["performanceEvaluation"]][, 2] :    incorrect number of dimensions 
+2020-04-10 16:55:14	[Main thread]	FATAL			Error in plp9[["performanceEvaluation"]][2, ] :    incorrect number of dimensions 
+2020-04-10 16:55:19	[Main thread]	FATAL			Error in plp9[["performanceEvaluation"]][, 2] :    incorrect number of dimensions 
+2020-04-10 16:58:37	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Shiny App created at: ./HospitalizationInSentHomePatientsResults/ShinyApp/data
+2020-04-10 16:58:37	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Shiny App created at: ./HospitalizationInSentHomePatientsResults/ShinyApp/data
+2020-04-10 16:58:37	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Upload the folder ./HospitalizationInSentHomePatientsResults/ShinyApp/data to the shinyDeploy OHDSI github to share the results with others.
+2020-04-10 16:58:37	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Upload the folder ./HospitalizationInSentHomePatientsResults/ShinyApp/data to the shinyDeploy OHDSI github to share the results with others.
+2020-04-10 17:01:10	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Shiny App created at: ./HospitalizationInSentHomePatientsResults/ShinyApp/data
+2020-04-10 17:01:10	[Main thread]	INFO	HospitalizationInSentHomePatients	populateShinyApp	Upload the folder ./HospitalizationInSentHomePatientsResults/ShinyApp/data to the shinyDeploy OHDSI github to share the results with others.
+2020-04-10 17:01:12	[Main thread]	FATAL			Error in viewMultiplePlp(analysesLocation = outputFolder) :    could not find function "viewMultiplePlp" 
