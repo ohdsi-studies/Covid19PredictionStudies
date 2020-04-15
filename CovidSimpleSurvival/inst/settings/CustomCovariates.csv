@@ -6,7 +6,7 @@
 7,15043,"[Covid v1] Persons with hyperlipidemia",-9999,-1,FALSE,FALSE
 8,15044,"[Covid v1] Persons with COPD",-9999,-1,FALSE,FALSE
 9,15045,"[Covid v1] persons with cancer",-9999,-1,FALSE,FALSE
-10,15297,"[Covid v1] persons with respiratory failure or insufficency",-9999,-1,FALSE,FALSE
+10,15297,"persons with respiratory failure or insufficency",-9999,-1,FALSE,FALSE
 11,15305,"[Covid v1] persons with liver failure and Ascites",-9999,-1,FALSE,FALSE
 12,15306,"[Covid v1] persons with pressure or skin ulcer",-9999,-1,FALSE,FALSE
 13,15367,"[Covid v1] persons with inpatient or ER visit",-30,-1,FALSE,FALSE
