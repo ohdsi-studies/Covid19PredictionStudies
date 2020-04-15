@@ -20,7 +20,7 @@ Instructions To Install and Run Package From Github
 - Then install the study package:
 ```r
   # install the network package
-  devtools::install_github("ohdsi-studies/CovidSimpleModels")
+  devtools::install_github("ohdsi-studies/Covid19PredictionStudies/CovidSimpleModels")
 ```
 
 - Execute the study by running the code in (extras/CodeToRun.R) but make sure to edit the settings:
@@ -72,11 +72,11 @@ sampleSize <- NULL
 #============== Pick T and O cohorts ===========
 
 # [option 1] use default cohorts (same as those used to develop the models)
-usePackageCohorts <- True
+usePackageCohorts <- TRUE
 
 # [option 2] use your own specified cohorts (these must be created already)
 # uncomment the line below to set usePackageCohorts as False
-## usePackageCohorts <- False
+## usePackageCohorts <- FALSE
 newTargetCohortId = 'the cohort definition id for the new target' 
 newOutcomeCohortId = 'the cohort definition id for the new outcome' 
 newCohortDatabaseSchema = 'the database schema containing the cohorts' 
