@@ -4,7 +4,7 @@
 \alias{packageResults}
 \title{Package the results for sharing with OHDSI researchers}
 \usage{
-packageResults(outputFolder, minCellCount = 5)
+packageResults(outputFolder, cdmDatabaseName, minCellCount = 5)
 }
 \arguments{
 \item{outputFolder}{Name of folder containing the study analysis results 

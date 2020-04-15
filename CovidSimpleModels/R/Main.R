@@ -53,7 +53,6 @@
 #' @param requireTimeAtRisk    Should subject without time at risk be removed?
 #' @param minTimeAtRisk        The minimum number of days at risk required to be included
 #' @param includeAllOutcomes   (binary) indicating whether to include people with outcomes who are not observed for the whole at risk period
-#' @param standardCovariates   Use this to add standard covariates such as age/gender
 #' @param endDay               The end day relative to index for the custom covariates (default is -1)
 #' @param outputFolder         Name of local folder to place results; make sure to use forward slashes
 #'                             (/). Do not use a folder on a network drive since this greatly impacts
@@ -96,7 +95,6 @@
 #'         startAnchor = 'cohort start',
 #'         riskWindowEnd = 365,
 #'         endAnchor = 'cohort start',
-#'         standardCovariates = FeatureExtraction::createCovariateSettings(useDemographicsAgeGroup = T, useDemographicsGender = T),
 #'         outputFolder = "c:/temp/study_results", 
 #'         createCohorts = T,
 #'         predictSevereAtOutpatientVisit = T,
@@ -135,7 +133,6 @@ execute <- function(connectionDetails,
                     requireTimeAtRisk = F,
                     minTimeAtRisk = 1,
                     includeAllOutcomes = T,
-                    standardCovariates,
                     endDay = -1,
                     outputFolder,
                     createCohorts = F,
@@ -148,6 +145,11 @@ execute <- function(connectionDetails,
 					          minCellCount = 10,
                     verbosity = "INFO",
                     cdmVersion = 5) {
+  
+  
+  standardCovariates <- FeatureExtraction::createCovariateSettings(useDemographicsAgeGroup = T, 
+                                                                   useDemographicsGender = T, 
+                                                                   excludedCovariateConceptIds = 8532 )
   
   if(usePackageCohorts){
     if(!is.null(newTargetCohortId) | !is.null(newOutcomeCohortId)){

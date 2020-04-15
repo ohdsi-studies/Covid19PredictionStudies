@@ -96,11 +96,6 @@ requireTimeAtRisk <- F
 minTimeAtRisk <- 1
 includeAllOutcomes <- T
 
-standardCovariates <- FeatureExtraction::createCovariateSettings(useDemographicsAge= T, 
-                                                                 useDemographicsGender = T, 
-                                                                 useVisitConceptCountLongTerm = T,
-                                                                 excludedCovariateConceptIds = 8532 )
-
 execute(connectionDetails = connectionDetails,
         usePackageCohorts = usePackageCohorts,
         newTargetCohortId = newTargetCohortId,
@@ -122,7 +117,6 @@ execute(connectionDetails = connectionDetails,
                                     requireTimeAtRisk = requireTimeAtRisk,
                                     minTimeAtRisk = minTimeAtRisk,
                                     includeAllOutcomes = includeAllOutcomes,
-                                    standardCovariates = standardCovariates,
                                     outputFolder = outputFolder,
                                     createCohorts = createCohorts,
                                     predictSevereAtOutpatientVisit = predictSevereAtOutpatientVisit,
