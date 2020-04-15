@@ -1,4 +1,4 @@
-HospitalizationInSentHomePatientsValidation
+SentHomeValidation
 ======================
 
 Introduction
@@ -13,7 +13,7 @@ Features
 
 Technology
 ==========
-  HospitalizationInSentHomePatientsValidation is an R package.
+  SentHomeValidation is an R package.
 
 System Requirements
 ===================
@@ -28,7 +28,7 @@ Dependencies
   
 Guide
 ============
-A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/HospitalizationInSentHomePatientsValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
+A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/SentHomeValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
   
   
 A1. Installing the package from GitHub
@@ -36,24 +36,19 @@ A1. Installing the package from GitHub
 ```r
 # To install the package from github:
 install.packages("devtools")
-devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospitalizationInSentHomePatientsValidation")
+devtools::install_github("ohdsi-studies/Covid19PredictionStudies/SentHomeValidation")
 ```
-
-A2. Building the package inside RStudio
-===============
-  1. Open the validation package project file (file ending in .Rproj) 
-  2. Build the package in RStudio by selecting the 'Build' option in the top right (the tabs contain  'Environment', 'History', 'Connections', 'Build', 'Git') and then clicking on the 'Install and Restart'
 
 B. Getting Started
 ===============
   1. Make sure to have either: installed (A1) or built (A2) the package 
-  2. In R, run the code in 'extras/codeToRun.R' (see [Skeleton Validation Study guide](https://github.com/OHDSI/HospitalizationInSentHomePatientsValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf) for guideance)
+  2. In R, run the code in 'extras/codeToRun.R' (see [Skeleton Validation Study guide](https://github.com/OHDSI/SentHomeValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf) for guideance)
 
 
 C. Example Code
 ===============
 ```r
-library(HospitalizationInSentHomePatientsValidation)
+library(SentHomeValidation)
 
 # add details of your database setting:
 databaseName <- 'add a shareable name for the database you are currently validating on'
@@ -68,7 +63,7 @@ cohortDatabaseSchema <- 'your work database schema'
 oracleTempSchema <- NULL
 
 # the name of the table that will be created in cohortDatabaseSchema to hold the cohorts
-cohortTable <- 'HospitalizationInSentHomePatientsValidationCohortTable'
+cohortTable <- 'SentHomeValidationCohortTable'
 
 # the location to save the prediction models results to:
 # NOTE: if you set the outputFolder to the 'Validation' directory in the 
@@ -90,7 +85,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 port = port)
 
 # Now run the study:
-HospitalizationInSentHomePatientsValidation::execute(connectionDetails = connectionDetails,
+SentHomeValidation::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -104,7 +99,7 @@ HospitalizationInSentHomePatientsValidation::execute(connectionDetails = connect
                  sampleSize = NULL)
                  
 # If the validation study runs to completion and returns results, package it up ready to share with the study owner (but remove counts less than 10) by running:
-HospitalizationInSentHomePatientsValidation::execute(connectionDetails = connectionDetails,
+SentHomeValidation::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -119,7 +114,7 @@ HospitalizationInSentHomePatientsValidation::execute(connectionDetails = connect
                  
                  
 # If your target cohort is large use the sampleSize setting to sample from the cohort:
-HospitalizationInSentHomePatientsValidation::execute(connectionDetails = connectionDetails,
+SentHomeValidation::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -136,8 +131,8 @@ HospitalizationInSentHomePatientsValidation::execute(connectionDetails = connect
 
 License
 =======
-  HospitalizationInSentHomePatientsValidation is licensed under Apache License 2.0
+  SentHomeValidation is licensed under Apache License 2.0
 
 Development
 ===========
-  HospitalizationInSentHomePatientsValidation is being developed in R Studio.
+  SentHomeValidation is being developed in R Studio.
