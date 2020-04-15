@@ -21,7 +21,9 @@ predictSimple <- function(connectionDetails,
                                            minTimeAtRisk,
                                            includeAllOutcomes,
                                            model = 'ShortTermSurvival.csv',
-                                           analysisId = 1){
+                                           analysisId = 1,
+                          studyStartDate = "",
+                          studyEndDate = ""){
   ParallelLogger::logInfo("Extracting data for predicting Simple Model")
   plpData <- getData(connectionDetails = connectionDetails,
                      cohortId = cohortId,
@@ -35,7 +37,11 @@ predictSimple <- function(connectionDetails,
                      endDay = endDay,
                      firstExposureOnly = firstExposureOnly,
                      sampleSize = sampleSize,
-                     cdmVersion = cdmVersion)
+                     cdmVersion = cdmVersion,
+                     studyStartDate = studyStartDate,
+                     studyEndDate = studyEndDate)
+  
+  if(is.null(plpData)){return(NULL)}
   
   ParallelLogger::logInfo("Creating population")
   ParallelLogger::logInfo(paste0("TAR:", startAnchor,'+',riskWindowStart,'-', endAnchor,'+',riskWindowEnd))

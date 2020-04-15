@@ -29,7 +29,6 @@ execute(
   requireTimeAtRisk = F,
   minTimeAtRisk = 1,
   includeAllOutcomes = T,
-  standardCovariates,
   endDay = -1,
   outputFolder,
   createCohorts = F,
@@ -100,8 +99,6 @@ priviliges for storing temporary tables.}
 
 \item{includeAllOutcomes}{(binary) indicating whether to include people with outcomes who are not observed for the whole at risk period}
 
-\item{standardCovariates}{Use this to add standard covariates such as age/gender}
-
 \item{endDay}{The end day relative to index for the custom covariates (default is -1)}
 
 \item{outputFolder}{Name of local folder to place results; make sure to use forward slashes
@@ -155,7 +152,6 @@ execute(connectionDetails,
         startAnchor = 'cohort start',
         riskWindowEnd = 365,
         endAnchor = 'cohort start',
-        standardCovariates = FeatureExtraction::createCovariateSettings(useDemographicsAgeGroup = T, useDemographicsGender = T),
         outputFolder = "c:/temp/study_results", 
         createCohorts = T,
         predictShortTermSurvival = T,

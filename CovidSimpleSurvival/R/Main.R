@@ -53,7 +53,6 @@
 #' @param requireTimeAtRisk    Should subject without time at risk be removed?
 #' @param minTimeAtRisk        The minimum number of days at risk required to be included
 #' @param includeAllOutcomes   (binary) indicating whether to include people with outcomes who are not observed for the whole at risk period
-#' @param standardCovariates   Use this to add standard covariates such as age/gender
 #' @param endDay               The end day relative to index for the custom covariates (default is -1)
 #' @param outputFolder         Name of local folder to place results; make sure to use forward slashes
 #'                             (/). Do not use a folder on a network drive since this greatly impacts
@@ -93,7 +92,6 @@
 #'         startAnchor = 'cohort start',
 #'         riskWindowEnd = 365,
 #'         endAnchor = 'cohort start',
-#'         standardCovariates = FeatureExtraction::createCovariateSettings(useDemographicsAgeGroup = T, useDemographicsGender = T),
 #'         outputFolder = "c:/temp/study_results", 
 #'         createCohorts = T,
 #'         predictShortTermSurvival = T,
@@ -129,7 +127,6 @@ execute <- function(connectionDetails,
                     requireTimeAtRisk = F,
                     minTimeAtRisk = 1,
                     includeAllOutcomes = T,
-                    standardCovariates,
                     endDay = -1,
                     outputFolder,
                     createCohorts = F,
@@ -139,6 +136,13 @@ execute <- function(connectionDetails,
 					          minCellCount = 10,
                     verbosity = "INFO",
                     cdmVersion = 5) {
+  
+  
+  standardCovariates <- FeatureExtraction::createCovariateSettings(useDemographicsAge= T, 
+                                                                   useDemographicsAgeGroup = T,
+                                                                   useDemographicsGender = T, 
+                                                                   excludedCovariateConceptIds = 8532,
+                                                                   endDays = endDay)
   
   if(usePackageCohorts){
     if(!is.null(newTargetCohortId) | !is.null(newOutcomeCohortId)){
@@ -177,6 +181,8 @@ execute <- function(connectionDetails,
                     outcomeIds = sa$outcomeId,
                     model = sa$model,
                     analysisId = sa$analysisId,
+                    studyStartDate = sa$studyStartDate,
+                    studyEndDate = sa$studyEndDate,
                     cdmDatabaseSchema = cdmDatabaseSchema,
                     cdmDatabaseName = cdmDatabaseName,
                     cohortDatabaseSchema = cohortDatabaseSchema,
@@ -197,13 +203,15 @@ execute <- function(connectionDetails,
                     minTimeAtRisk = minTimeAtRisk,
                     includeAllOutcomes = includeAllOutcomes)
       
-      if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',sa$analysisId)))){
-        dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
+      if(!is.null(result)){
+        if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',sa$analysisId)))){
+          dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
+        }
+        ParallelLogger::logInfo("Saving results")
+        saveRDS(result, file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
+        ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
+        
       }
-      ParallelLogger::logInfo("Saving results")
-      saveRDS(result, file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
-      ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
-      
     }
   }
   
