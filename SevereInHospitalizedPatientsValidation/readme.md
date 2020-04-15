@@ -36,7 +36,7 @@ A1. Installing the package from GitHub
 ```r
 # To install the package from github:
 install.packages("devtools")
-devtools::install_github("ohdsi-studies/SevereInHospitalizedPatientsValidation")
+devtools::install_github("ohdsi-studies/Covid19PredictionStudies/SevereInHospitalizedPatientsValidation")
 ```
 
 A2. Building the package inside RStudio
