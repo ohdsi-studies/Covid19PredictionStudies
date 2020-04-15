@@ -10,7 +10,9 @@ getData <- function(connectionDetails,
                     endDay,
                     firstExposureOnly,
                     sampleSize,
-                    cdmVersion){
+                    cdmVersion,
+                    studyStartDate,
+                    studyEndDate){
   
   pathToCustom <- system.file("settings", 'CustomCovariates.csv', package = "CovidSimpleModels")
   cohortVarsToCreate <- utils::read.csv(pathToCustom)
@@ -30,7 +32,7 @@ getData <- function(connectionDetails,
                                                       ageInteraction = as.character(cohortVarsToCreate$ageInteraction[i]))
   }
   
-  result <- PatientLevelPrediction::getPlpData(connectionDetails = connectionDetails,
+  result <- tryCatch({PatientLevelPrediction::getPlpData(connectionDetails = connectionDetails,
                                      cdmDatabaseSchema = cdmDatabaseSchema,
                                      oracleTempSchema = oracleTempSchema, 
                                      cohortId = as.double(as.character(cohortId)), 
@@ -42,7 +44,12 @@ getData <- function(connectionDetails,
                                      cdmVersion = cdmVersion, 
                                      firstExposureOnly = firstExposureOnly, 
                                      sampleSize =  sampleSize, 
-                                     covariateSettings = covSets)
+                                     covariateSettings = covSets,
+                                     studyStartDate = studyStartDate,
+                                     studyEndDate = studyEndDate)},
+                     error = function(e) {
+                       return(NULL)
+                     })
   
   return(result)
   
@@ -85,48 +92,115 @@ getPredict <- function(model){
 
 
 getSettings <- function(predictSevereAtOutpatientVisit,
-            predictCriticalAtOutpatientVisit,
-            predictDeathAtOutpatientVisit,
-            predictCriticalAtInpatientVisit,
-            predictDeathAtInpatientVisit,
-            usePackageCohorts){
+                        predictCriticalAtOutpatientVisit,
+                        predictDeathAtOutpatientVisit,
+                        predictCriticalAtInpatientVisit,
+                        predictDeathAtInpatientVisit,
+                        usePackageCohorts){
   
   settingR <- c()
   
   if(predictSevereAtOutpatientVisit){
-    settingR <- rbind(settingR, c(cohortId = ifelse(usePackageCohorts, 1, 1), 
-                             outcomeId = ifelse(usePackageCohorts, 2, 2),
-                             analysisId = 1, 
-                             model = 'SevereAtOutpatientVisit.csv'))
+    
+    if(!usePackageCohorts){
+      settingR <- rbind(settingR, 
+                        c(cohortId = 1, 
+                          outcomeId = 2,
+                          analysisId = 4001, 
+                          model = 'SevereAtOutpatientVisit.csv'))  
+    } else{
+      settingR <- rbind(settingR, 
+                        data.frame(cohortId = c(1001,1001,1002,1003), 
+                                   outcomeId = rep(2001,4),
+                                   studyStartDate = c("","2020-01-01","2020-01-01","2020-01-01"),
+                                   studyEndDate =c("","2020-05-31","2020-05-31","2020-05-31"),
+                                   analysisId = c(1,1001,2001,3001), 
+                                   model = rep('SevereAtOutpatientVisit.csv',4))) 
+    }
+    
+    
+    
   }
   if(predictCriticalAtOutpatientVisit){
-    settingR <- rbind(settingR, c(cohortId = ifelse(usePackageCohorts, 1, 1), 
-                             outcomeId = ifelse(usePackageCohorts, 3, 2),
-                             analysisId = 2, 
-                             model = 'CriticalAtOutpatientVisit.csv'))
+    if(!usePackageCohorts){
+      settingR <- rbind(settingR, 
+                        c(cohortId = 1, 
+                          outcomeId = 2,
+                          analysisId = 4002, 
+                          model = 'CriticalAtOutpatientVisit.csv'))  
+    } else{
+      settingR <- rbind(settingR, 
+                        data.frame(cohortId = c(1001,1001,1002,1003), 
+                                   outcomeId = rep(3001,4),
+                                   studyStartDate = c("","2020-01-01","2020-01-01","2020-01-01"),
+                                   studyEndDate =c("","2020-05-31","2020-05-31","2020-05-31"),
+                                   analysisId = c(2,1002,2002,3002), 
+                                   model = rep('CriticalAtOutpatientVisit.csv',4))) 
+    }
   }
+  
+  
   if(predictDeathAtOutpatientVisit){
-    settingR <- rbind(settingR, c(cohortId = ifelse(usePackageCohorts, 1, 1), 
-                             outcomeId = ifelse(usePackageCohorts, 4, 2),
-                             analysisId = 3, 
-                             model = 'DeathAtOutpatientVisit.csv'))
+    if(!usePackageCohorts){
+      settingR <- rbind(settingR, 
+                        c(cohortId = 1, 
+                          outcomeId = 2,
+                          analysisId = 4003, 
+                          model = 'DeathAtOutpatientVisit.csv'))  
+    } else{
+      settingR <- rbind(settingR, 
+                        data.frame(cohortId = c(1001,1001,1002,1003), 
+                                   outcomeId = rep(4001,4),
+                                   studyStartDate = c("","2020-01-01","2020-01-01","2020-01-01"),
+                                   studyEndDate =c("","2020-05-31","2020-05-31","2020-05-31"),
+                                   analysisId = c(3,1003,2003,3003), 
+                                   model = rep('DeathAtOutpatientVisit.csv',4))) 
+    }
   }
+  
+  
   if(predictCriticalAtInpatientVisit){
-    settingR <- rbind(settingR, c(cohortId = ifelse(usePackageCohorts, 2, 1), 
-                             outcomeId = ifelse(usePackageCohorts, 3, 2),
-                             analysisId = 4, 
-                             model = 'CriticalAtInpatientVisit.csv'))
+    if(!usePackageCohorts){
+      settingR <- rbind(settingR, 
+                        c(cohortId = 1, 
+                          outcomeId = 2,
+                          analysisId = 4004, 
+                          model = 'CriticalAtInpatientVisit.csv'))  
+    } else{
+      settingR <- rbind(settingR, 
+                        data.frame(cohortId = c(2001,2001,2002,2003), 
+                                   outcomeId = rep(3001,4),
+                                   studyStartDate = c("","2020-01-01","2020-01-01","2020-01-01"),
+                                   studyEndDate =c("","2020-05-31","2020-05-31","2020-05-31"),
+                                   analysisId = c(4,1004,2004,3004), 
+                                   model = rep('CriticalAtInpatientVisit.csv',4))) 
+    }
   }
+  
+  
+  
   if(predictDeathAtInpatientVisit){
-    settingR <- rbind(settingR, c(cohortId = ifelse(usePackageCohorts, 2, 1), 
-                             outcomeId = ifelse(usePackageCohorts, 4, 2),
-                             analysisId = 5, 
-                             model = 'DeathAtInpatientVisit.csv'))
+    if(!usePackageCohorts){
+      settingR <- rbind(settingR, 
+                        c(cohortId = 1, 
+                          outcomeId = 2,
+                          analysisId = 4005, 
+                          model = 'DeathAtInpatientVisit.csv'))  
+    } else{
+      settingR <- rbind(settingR, 
+                        data.frame(cohortId = c(2001,2001,2002,2003), 
+                                   outcomeId = rep(4001,4),
+                                   studyStartDate = c("","2020-01-01","2020-01-01","2020-01-01"),
+                                   studyEndDate =c("","2020-05-31","2020-05-31","2020-05-31"),
+                                   analysisId = c(5,1005,2005,3005), 
+                                   model = rep('DeathAtInpatientVisit.csv',4))) 
+    }
   }
+  
   
   settingR <- as.data.frame(settingR)
   return(settingR)
-
+  
 }
 
 

@@ -189,6 +189,8 @@ execute <- function(connectionDetails,
                     outcomeIds = sa$outcomeId,
                     model = sa$model,
                     analysisId = sa$analysisId,
+                    studyStartDate = sa$studyStartDate,
+                    studyEndDate = sa$studyEndDate,
                     cdmDatabaseSchema = cdmDatabaseSchema,
                     cdmDatabaseName = cdmDatabaseName,
                     cohortDatabaseSchema = cohortDatabaseSchema,
@@ -209,13 +211,15 @@ execute <- function(connectionDetails,
                     minTimeAtRisk = minTimeAtRisk,
                     includeAllOutcomes = includeAllOutcomes)
       
-      if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',sa$analysisId)))){
-        dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
-      }
-      ParallelLogger::logInfo("Saving results")
-      saveRDS(result, file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
-      ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
       
+      if(!is.null(result)){
+        if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',sa$analysisId)))){
+          dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
+        }
+        ParallelLogger::logInfo("Saving results")
+        saveRDS(result, file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
+        ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
+      }
     }
   }
   
