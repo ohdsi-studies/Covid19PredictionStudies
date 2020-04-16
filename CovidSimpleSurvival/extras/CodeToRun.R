@@ -60,13 +60,12 @@ requireTimeAtRisk <- F
 minTimeAtRisk <- 1
 includeAllOutcomes <- T
 
-
 execute(connectionDetails = connectionDetails,
         usePackageCohorts = usePackageCohorts,
-        newTargetCohortId = newTargetCohortId,
-        newOutcomeCohortId = newOutcomeCohortId,
-        newCohortDatabaseSchema = newCohortDatabaseSchema,
-        newCohortTable = newCohortTable,
+        newTargetCohortId = NULL
+        newOutcomeCohortId = NULL,
+        newCohortDatabaseSchema = NULL,
+        newCohortTable = NULL,
         cdmDatabaseSchema = cdmDatabaseSchema,
         cdmDatabaseName = cdmDatabaseName,
         cohortDatabaseSchema = cohortDatabaseSchema,
