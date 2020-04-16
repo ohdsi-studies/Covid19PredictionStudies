@@ -13,7 +13,7 @@ Features
 
 Technology
 ==========
-  HospitalizationInSymptomaticPatientsValidation is an R package.
+  HospInOutpatientValidation is an R package.
 
 System Requirements
 ===================
@@ -28,7 +28,7 @@ Dependencies
   
 Guide
 ============
-A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/HospitalizationInSymptomaticPatientsValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
+A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
   
   
 A. Installing the package from GitHub
@@ -36,19 +36,19 @@ A. Installing the package from GitHub
 ```r
 # To install the package from github:
 install.packages("devtools")
-devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospitalizationInSymptomaticPatientsValidation")
+devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospInOutpatientValidation")
 ```
 
 B. Getting Started
 ===============
   1. Make sure to have either: installed (A1) or built (A2) the package 
-  2. In R, run the code in 'extras/codeToRun.R' (see [Skeleton Validation Study guide](https://github.com/OHDSI/HospitalizationInSymptomaticPatientsValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf) for guideance)
+  2. In R, run the code in 'extras/codeToRun.R' (see [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf) for guideance)
 
 
 C. Example Code
 ===============
 ```r
-library(HospitalizationInSymptomaticPatientsValidation)
+library(HospInOutpatientValidation)
 
 # add details of your database setting:
 databaseName <- 'add a shareable name for the database you are currently validating on'
@@ -63,7 +63,7 @@ cohortDatabaseSchema <- 'your work database schema'
 oracleTempSchema <- NULL
 
 # the name of the table that will be created in cohortDatabaseSchema to hold the cohorts
-cohortTable <- 'HospitalizationInSymptomaticPatientsValidationCohortTable'
+cohortTable <- 'HospInOutpatientValidationCohortTable'
 
 # the location to save the prediction models results to:
 # NOTE: if you set the outputFolder to the 'Validation' directory in the 
@@ -85,7 +85,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 port = port)
 
 # Now run the study:
-HospitalizationInSymptomaticPatientsValidation::execute(connectionDetails = connectionDetails,
+HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -99,7 +99,7 @@ HospitalizationInSymptomaticPatientsValidation::execute(connectionDetails = conn
                  sampleSize = NULL)
                  
 # If the validation study runs to completion and returns results, package it up ready to share with the study owner (but remove counts less than 10) by running:
-HospitalizationInSymptomaticPatientsValidation::execute(connectionDetails = connectionDetails,
+HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -114,7 +114,7 @@ HospitalizationInSymptomaticPatientsValidation::execute(connectionDetails = conn
                  
                  
 # If your target cohort is large use the sampleSize setting to sample from the cohort:
-HospitalizationInSymptomaticPatientsValidation::execute(connectionDetails = connectionDetails,
+HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -131,8 +131,8 @@ HospitalizationInSymptomaticPatientsValidation::execute(connectionDetails = conn
 
 License
 =======
-  HospitalizationInSymptomaticPatientsValidation is licensed under Apache License 2.0
+  HospInOutpatientValidation is licensed under Apache License 2.0
 
 Development
 ===========
-  HospitalizationInSymptomaticPatientsValidation is being developed in R Studio.
+  HospInOutpatientValidation is being developed in R Studio.
