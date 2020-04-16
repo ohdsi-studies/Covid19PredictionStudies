@@ -115,7 +115,13 @@ You need to install the latest version of the PatientLevelPrediction R package (
 
 ```r
 install.packages('devtools')
+devtools::install_github("OHDSI/FeatureExtraction")
 devtools::install_github('ohdsi/PatientLevelPrediction')
 ```
 
+You need to install OhdsiSharing to send the results:
+
+```r
+devtools::install_github("OHDSI/OhdsiSharing")
+```
 
