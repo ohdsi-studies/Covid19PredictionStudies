@@ -16,9 +16,13 @@ oracleTempSchema <- NULL
 cohortTable <- 'SevereInHospValCohortTable'
 
 # the location to save the prediction models results to:
-outputFolder <- '../Validation'
+outputFolder <- './SevereInHospVal'
+
+# Min cell count in final results, values less than this are replaced by -1
+minCellCount <- 10
 
 # add connection details:
+# NOTE: make sure the folder you set for fftempdir exists or you will get an error
 options(fftempdir = 'T:/fftemp')
 dbms <- "pdw"
 user <- NULL
@@ -31,6 +35,14 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 password = pw,
                                                                 port = port)
 
+
+# Pick what parts of the study to run (all need to be run so recommend to not edit between ===)
+#======
+createCohorts <- TRUE
+runValidation <- TRUE
+packageResults <- TRUE
+#=====
+
 # Now run the study
 SevereInHospVal::execute(connectionDetails = connectionDetails,
                                  databaseName = databaseName,
@@ -39,26 +51,11 @@ SevereInHospVal::execute(connectionDetails = connectionDetails,
                                  oracleTempSchema = oracleTempSchema,
                                  cohortTable = cohortTable,
                                  outputFolder = outputFolder,
-                                 createCohorts = T,
-                                 runValidation = T,
-                                 packageResults = F,
-                                 minCellCount = 5,
+                                 createCohorts = createCohorts,
+                                 runValidation = runValidation,
+                                 packageResults = packageResults,
+                                 minCellCount = minCellCount,
                                  sampleSize = NULL)
 # the results will be saved to outputFolder.  If you set this to the
 # predictionStudyResults/Validation package then the validation results
 # will be accessible to the shiny viewer
-
-# to package the results run (run after the validation results are complete):
-# NOTE: the minCellCount = N will remove any result with N patients or less
-SevereInHospVal::execute(connectionDetails = connectionDetails,
-                                 databaseName = databaseName,
-                                 cdmDatabaseSchema = cdmDatabaseSchema,
-                                 cohortDatabaseSchema = cohortDatabaseSchema,
-                                 oracleTempSchema = oracleTempSchema,
-                                 cohortTable = cohortTable,
-                                 outputFolder = outputFolder,
-                                 createCohorts = F,
-                                 runValidation = F,
-                                 packageResults = T,
-                                 minCellCount = 5,
-                                 sampleSize = NULL)

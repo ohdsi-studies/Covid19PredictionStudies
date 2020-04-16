@@ -48,20 +48,12 @@ sampleSize <- NULL
 
 #============== Pick T and O cohorts ===========
 
-# [option 1] use default cohorts (same as those used to develop the models)
+# [option 1] use default cohorts
 usePackageCohorts <- TRUE
 newTargetCohortId <- NULL
 newOutcomeCohortId <- NULL
 newCohortDatabaseSchema <- NULL
 newCohortTable <- NULL
-
-# [option 2] use your own specified cohorts (these must be created already)
-# uncomment the line below to set usePackageCohorts as False
-# usePackageCohorts <- FALSE
-# newTargetCohortId = 'the cohort definition id for the new target' 
-# newOutcomeCohortId = 'the cohort definition id for the new outcome' 
-# newCohortDatabaseSchema = 'the database schema containing the cohorts' 
-# newCohortTable = 'the table name of the table containing the cohorts' 
 
 #=======================
 # TAR settings - recommended to not edit
