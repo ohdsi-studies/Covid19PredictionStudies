@@ -1,0 +1,6 @@
+cohortId,atlasId,name
+5889,5889,ID27_Hosp_broad_pneumonia_and_intensive_services_or_death
+5890,5890,ID28_persons_who_die
+5891,5891,ID29_Hospitalizations_with_pneumonia_age18
+563,563,Hospitalizations_with_pneumonia_age18_no_flu
+564,564,Hospitalizations_with_pneumonia_age18_covid
