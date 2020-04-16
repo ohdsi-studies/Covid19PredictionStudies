@@ -1,8 +1,8 @@
-# @file HospInOutpatientValidation.R
+# @file HospInOutpatientVal.R
 #
 # Copyright 2020 Observational Health Data Sciences and Informatics
 #
-# This file is part of HospInOutpatientValidation
+# This file is part of HospInOutpatientVal
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,6 +19,6 @@
 #' HospInOutpatientValidation
 #'
 #' @docType package
-#' @name HospInOutpatientValidation
+#' @name HospInOutpatientVal
 #' @import DatabaseConnector
 NULL

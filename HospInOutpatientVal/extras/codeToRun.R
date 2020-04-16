@@ -1,4 +1,4 @@
-library(HospInOutpatientValidation)
+library(HospInOutpatientVal)
 
 # add details of your database setting:
 databaseName <- 'add a shareable name for the database you are currently validating on'
@@ -32,7 +32,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 port = port)
 
 # Now run the study
-HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
+HospInOutpatientVal::execute(connectionDetails = connectionDetails,
                                  databaseName = databaseName,
                                  cdmDatabaseSchema = cdmDatabaseSchema,
                                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -50,7 +50,7 @@ HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
 
 # to package the results run (run after the validation results are complete):
 # NOTE: the minCellCount = N will remove any result with N patients or less
-HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
+HospInOutpatientVal::execute(connectionDetails = connectionDetails,
                                  databaseName = databaseName,
                                  cdmDatabaseSchema = cdmDatabaseSchema,
                                  cohortDatabaseSchema = cohortDatabaseSchema,

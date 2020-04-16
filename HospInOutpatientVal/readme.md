@@ -28,7 +28,7 @@ Dependencies
   
 Guide
 ============
-A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
+A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientVal/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
   
   
 A. Installing the package from GitHub
@@ -36,19 +36,19 @@ A. Installing the package from GitHub
 ```r
 # To install the package from github:
 install.packages("devtools")
-devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospInOutpatientValidation")
+devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospInOutpatientVal")
 ```
 
 B. Getting Started
 ===============
   1. Make sure to have either: installed (A1) or built (A2) the package 
-  2. In R, run the code in 'extras/codeToRun.R' (see [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientValidation/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf) for guideance)
+  2. In R, run the code in 'extras/codeToRun.R' (see [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientVal/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf) for guideance)
 
 
 C. Example Code
 ===============
 ```r
-library(HospInOutpatientValidation)
+library(HospInOutpatientVal)
 
 # add details of your database setting:
 databaseName <- 'add a shareable name for the database you are currently validating on'
@@ -85,7 +85,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 port = port)
 
 # Now run the study:
-HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
+HospInOutpatientVal::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -99,7 +99,7 @@ HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
                  sampleSize = NULL)
                  
 # If the validation study runs to completion and returns results, package it up ready to share with the study owner (but remove counts less than 10) by running:
-HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
+HospInOutpatientVal::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -114,7 +114,7 @@ HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
                  
                  
 # If your target cohort is large use the sampleSize setting to sample from the cohort:
-HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
+HospInOutpatientVal::execute(connectionDetails = connectionDetails,
                  databaseName = databaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
@@ -131,8 +131,8 @@ HospInOutpatientValidation::execute(connectionDetails = connectionDetails,
 
 License
 =======
-  HospInOutpatientValidation is licensed under Apache License 2.0
+  HospInOutpatientVal is licensed under Apache License 2.0
 
 Development
 ===========
-  HospInOutpatientValidation is being developed in R Studio.
+  HospInOutpatientVal is being developed in R Studio.
