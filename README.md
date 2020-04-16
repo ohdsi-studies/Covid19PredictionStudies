@@ -42,12 +42,14 @@ When should this model be used? When a patient first has a diagnosis of symptom 
 ### Packages ###
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatients)
-- OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSymptomaticPatientsValidation)
+- OHDSI full model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospInOutpatientVal)
 - Existing model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/CovidVulnerabilityIndex)
+- OHDSI simple model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/CovidSimpleModels)
 
 ### Results ###
 
-**Shiny app:** [link](https://data.ohdsi.org/Covid19PredictingHospitalizationInFluPatients/)
+- **Shiny app:** [full model link](https://data.ohdsi.org/Covid19PredictingHospitalizationInFluPatients/)
+- **Shiny app:** [Simple model link](https://data.ohdsi.org/Covid19PredictingSimpleModels/)
 
 
 ## 2) Predicting which patients sent home after being seen at outpatient for flu or flu-like symptoms end up in hospital 2-30 days later   ##
@@ -61,12 +63,11 @@ When should this model be used? When a patient is about to be sent home after be
 ### Packages ###
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSentHomePatients)
-- OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/HospitalizationInSentHomePatientsValidation)
-- Existing model validation: No models found
+- OHDSI full model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SentHomeValidation)
 
 ### Results ###
 
-**Shiny app:** [link](https://data.ohdsi.org/Covid19PredictingHospitilizationAfterSentHome/)
+- **Shiny app:** [link](https://data.ohdsi.org/Covid19PredictingHospitilizationAfterSentHome/)
   
   
 ## 3) Predicting which patients admitted to hospital for pneumonia will be more severe (e.g., require ventilator or ICU) ##
@@ -80,25 +81,31 @@ When should this model be used? When a patient is first admitted to hospital wit
 ### Packages ###
 
 - OHDSI model development: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SevereInHospitalizedPatients)
-- OHDSI model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SevereInHospitalizedPatientsValidation)
-- Existing model validation: <todo link> 
+- OHDSI full model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/SevereInHospVal)
+- OHDSI simple model validation: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/CovidSimpleModels)
+
 
 ### Results ###
 
-**Shiny app:** [link](https://data.ohdsi.org/PredictingSevereInHospResults/)
-  
-## 4) Simple Models ##
- 
-This package contains the software used in the development of a simple model to answer the various prediction questions. This was done so as to increase the usability of the models in practice by reducing the feature set, whilst being provided with a benchmark to measure against.
+- **Shiny app:** [Full model link](https://data.ohdsi.org/Covid19PredictingSevereInHospResults/)
+- **Shiny app:** [Simple model link](https://data.ohdsi.org/Covid19PredictingSimpleModels/)
 
+
+## 4) Predicting survival in patients who recieve intensive care for pneumonia and ARDS ##
+ 
+The objective of this study is to identify which critically ill COVID-19 patients are most likely to survive if provided intensive care resources.  This would be used within a prioritization scheme for resource. 
+
+When should this model be used? When a patient is first admitted to hospital with suspected or known covid-19
+
+**Protocol:** [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/blob/master/CovidSimpleSurvival/docs/PLP_protocol_Q4_20200416.docx)
+ 
 ### Packages ###
 
-- OHDSI simple model validation package: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/CovidSimpleModels)
+- OHDSI simple model validation package: [link](https://github.com/ohdsi-studies/Covid19PredictionStudies/tree/master/CovidSimpleSurvival)
 
 ### Results ###
 
-**Shiny app:** [Link](https://data.ohdsi.org/Covid19PredictionSimpleHospitalizationModel/)
-
+- **Shiny app:** [Simple model link](https://data.ohdsi.org/Covid19PredictingSimpleModels/)
 
 
 
