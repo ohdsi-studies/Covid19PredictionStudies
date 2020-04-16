@@ -22,6 +22,7 @@ outputFolder <- './SevereInHospVal'
 minCellCount <- 10
 
 # add connection details:
+# NOTE: make sure the folder you set for fftempdir exists or you will get an error
 options(fftempdir = 'T:/fftemp')
 dbms <- "pdw"
 user <- NULL
