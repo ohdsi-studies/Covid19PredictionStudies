@@ -51,7 +51,7 @@ Instructions To Install and Run Package From Github
 - Then install the study package:
 ```r
   # install the network package
-  devtools::install_github("ohdsi-studies/Covid19PredictionStudies/CovidSimpleModels")
+ devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospInOutpatientVal")
 ```
 
 - Execute the study by running the code in (extras/CodeToRun.R) but make sure to edit the settings:
