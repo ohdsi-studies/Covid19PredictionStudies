@@ -35,7 +35,7 @@ Instructions on the inputs and outputs of the package:
 Vignette: [Using the package skeleton for validating exisitng prediction studies](https://raw.githubusercontent.com/OHDSI/SkeletonExistingPredictionModelStudy/master/inst/doc/UsingSkeletonPackage.pdf)
 
 
-A. Instructions To Install and Run Package From Github
+Instructions To Install and Run Package From Github
 ===================
 
 - Make sure you have PatientLevelPrediction installed:
