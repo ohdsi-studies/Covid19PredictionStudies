@@ -32,7 +32,7 @@ A general guide for running a valdiation study package is available here: [Skele
 
 Instructions To Install and Run Package From Github
 
-Make sure you have PatientLevelPrediction installed:
+- Make sure you have PatientLevelPrediction installed:
 ```r
   # get the latest PatientLevelPrediction
   install.packages("devtools")
