@@ -29,17 +29,10 @@ Dependencies
 Guide
 ============
 A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientVal/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
-  
-  
-Instructions on the inputs and outputs of the package: 
-Vignette: [Using the package skeleton for validating exisitng prediction studies](https://raw.githubusercontent.com/OHDSI/SkeletonExistingPredictionModelStudy/master/inst/doc/UsingSkeletonPackage.pdf)
-
 
 Instructions To Install and Run Package From Github
-===================
 
-- Make sure you have PatientLevelPrediction installed:
-
+Make sure you have PatientLevelPrediction installed:
 ```r
   # get the latest PatientLevelPrediction
   install.packages("devtools")
@@ -47,16 +40,18 @@ Instructions To Install and Run Package From Github
   # check the package
   PatientLevelPrediction::checkPlpInstallation()
 ```
-
 - Then install the study package:
+
 ```r
-  # install the network package
- devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospInOutpatientVal")
+# To install the package from github:
+install.packages("devtools")
+devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospInOutpatientVal")
 ```
 
+Getting Started
+===============
 
 - Execute the study by running the code in (extras/CodeToRun.R) but make sure to edit the settings:
-===============
 ```r
 library(HospInOutpatientVal)
 
