@@ -158,6 +158,7 @@ UNION  select c.concept_id
 WHERE E.concept_id is null
 ) C;
 
+UPDATE STATISTICS #Codesets;
 
 with primary_events (event_id, person_id, start_date, end_date, op_start_date, op_end_date, visit_occurrence_id) as
 (
