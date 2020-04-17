@@ -45,7 +45,7 @@ Instructions To Install and Run Package From Github
 ```
 
 - Then install the study package:
-===============
+
 ```r
 # To install the package from github:
 install.packages("devtools")
