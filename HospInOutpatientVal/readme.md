@@ -31,21 +31,33 @@ Guide
 A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientVal/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
   
   
-A. Installing the package from GitHub
-===============
+Instructions on the inputs and outputs of the package: 
+Vignette: [Using the package skeleton for validating exisitng prediction studies](https://raw.githubusercontent.com/OHDSI/SkeletonExistingPredictionModelStudy/master/inst/doc/UsingSkeletonPackage.pdf)
+
+
+A. Instructions To Install and Run Package From Github
+===================
+
+- Make sure you have PatientLevelPrediction installed:
+
 ```r
-# To install the package from github:
-install.packages("devtools")
-devtools::install_github("ohdsi-studies/Covid19PredictionStudies/HospInOutpatientVal")
+  # get the latest PatientLevelPrediction
+  install.packages("devtools")
+  devtools::install_github("OHDSI/PatientLevelPrediction")
+  # check the package
+  PatientLevelPrediction::checkPlpInstallation()
 ```
 
-B. Getting Started
-===============
-  1. Make sure to have either: installed (A1) or built (A2) the package 
-  2. In R, run the code in 'extras/codeToRun.R' (see [Skeleton Validation Study guide](https://github.com/OHDSI/HospInOutpatientVal/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf) for guideance)
+- Then install the study package:
+```r
+  # install the network package
+  devtools::install_github("ohdsi-studies/Covid19PredictionStudies/CovidSimpleModels")
+```
 
+- Execute the study by running the code in (extras/CodeToRun.R) but make sure to edit the settings:
+```r
 
-C. Example Code
+- Execute the study by running the code in (extras/CodeToRun.R) but make sure to edit the settings:
 ===============
 ```r
 library(HospInOutpatientVal)
