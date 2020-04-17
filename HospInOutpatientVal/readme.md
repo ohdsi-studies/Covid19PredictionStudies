@@ -134,6 +134,27 @@ HospInOutpatientVal::execute(connectionDetails = connectionDetails,
                  
 ```
 
+
+Submitting Results
+===================
+
+Once you have sucessfully executed the study you will find a compressed folder in the location specified '[outputFolder]/[databaseName].zip'.  The study should remove sensitive data but we encourage researchers to also check the contents of this folder (it will contain an rds file with the results which can be loaded via readRDS('[file location]').  
+
+To send the compressed folder results please message one of the leads (**[jreps](https://forums.ohdsi.org/u/jreps) , [RossW](https://forums.ohdsi.org/u/RossW)**) and we will give you the privateKeyFileName and userName.  You can then run the following R code to share the results:
+
+```r
+# If you don't have the R package OhdsiSharing then install it using github (uncomment the line below)
+# install_github("ohdsi/OhdsiSharing")
+
+library("OhdsiSharing")
+privateKeyFileName <- "message us for this"
+userName <- "message us for this"
+fileName <- file.path(outputFolder, paste0(databaseName,'.zip'))
+sftpUploadFile(privateKeyFileName, userName, fileName)
+```
+
+
+
 License
 =======
   HospInOutpatientVal is licensed under Apache License 2.0
