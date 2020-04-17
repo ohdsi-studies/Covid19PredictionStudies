@@ -31,22 +31,27 @@ Guide
 A general guide for running a valdiation study package is available here: [Skeleton Validation Study guide](https://github.com/OHDSI/SevereInHospVal/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf)
   
   
-A1. Installing the package from GitHub
-===============
+Instructions To Install and Run Package From Github
+
+
+- Make sure you have PatientLevelPrediction installed:
+
+```r
+  # get the latest PatientLevelPrediction
+  install.packages("devtools")
+  devtools::install_github("OHDSI/PatientLevelPrediction")
+  # check the package
+  PatientLevelPrediction::checkPlpInstallation()
+```
+
+- Then install the study package:
 ```r
 # To install the package from github:
 install.packages("devtools")
 devtools::install_github("ohdsi-studies/Covid19PredictionStudies/SevereInHospVal")
 ```
+- Execute the study by running the code in (extras/CodeToRun.R) but make sure to edit the settings:
 
-B. Getting Started
-===============
-  1. Make sure to have either: installed the package 
-  2. In R, run the code in 'extras/codeToRun.R' (see [Skeleton Validation Study guide](https://github.com/OHDSI/SevereInHospVal/tree/master/inst/doc/UsingSkeletonValidationPackage.pdf) for guideance)
-
-
-C. Example Code
-===============
 ```r
 library(SevereInHospVal)
 
