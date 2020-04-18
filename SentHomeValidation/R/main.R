@@ -80,7 +80,7 @@ execute <- function(connectionDetails,
                                                        verbosity = verbosity)
   }
 
-
+if(runSimple){
     studyAnalyses <- getSettings(predictSevereAtOutpatientVisit = predictSevereAtOutpatientVisit,
                                  usePackageCohorts = usePackageCohorts)
     if( nrow(studyAnalyses)!=0){
@@ -126,6 +126,7 @@ execute <- function(connectionDetails,
       }
       }
     }
+}
   # package the results: this creates a compressed file with sensitive details removed - ready to be reviewed and then
   # submitted to the network study manager
 

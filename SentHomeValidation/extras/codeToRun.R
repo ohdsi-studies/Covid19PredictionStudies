@@ -40,6 +40,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
 #======
 createCohorts <- TRUE
 runValidation <- TRUE
+runSimple <- TRUE
 packageResults <- TRUE
 #=====
 
@@ -53,6 +54,7 @@ SentHomeValidation::execute(connectionDetails = connectionDetails,
                                  outputFolder = outputFolder,
                                  createCohorts = createCohorts,
                                  runValidation = runValidation,
+                                 runSimple = runSimple,
                                  packageResults = packageResults,
                                  minCellCount = minCellCount,
                                  sampleSize = NULL)
