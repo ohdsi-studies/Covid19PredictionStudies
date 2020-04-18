@@ -38,6 +38,7 @@ execute <- function(connectionDetails,
                     outputFolder,
                     createCohorts = T,
                     runValidation = T,
+                    runSimple = F,
                     packageResults = T,
                     minCellCount = 5,
                     sampleSize = NULL,
@@ -79,6 +80,52 @@ execute <- function(connectionDetails,
                                                        verbosity = verbosity)
   }
 
+
+    studyAnalyses <- getSettings(predictSevereAtOutpatientVisit = predictSevereAtOutpatientVisit,
+                                 usePackageCohorts = usePackageCohorts)
+    if( nrow(studyAnalyses)!=0){
+      if( nrow(studyAnalyses)!=0){
+      for(k in 1:nrow(studyAnalyses)){
+        sa <- studyAnalyses[k,]
+        result <- predictSimple(connectionDetails = connectionDetails,
+                                cohortId = sa$cohortId,
+                                outcomeIds = sa$outcomeId,
+                                model = sa$model,
+                                analysisId = sa$analysisId,
+                                studyStartDate = sa$studyStartDate,
+                                studyEndDate = sa$studyEndDate,
+                                cdmDatabaseSchema = cdmDatabaseSchema,
+                                cdmDatabaseName = cdmDatabaseName,
+                                cohortDatabaseSchema = cohortDatabaseSchema,
+                                cohortTable = cohortTable,
+                                oracleTempSchema = oracleTempSchema,
+                                standardCovariates = standardCovariates,
+                                endDay = endDay,
+                                sampleSize = sampleSize,
+                                cdmVersion = cdmVersion,
+                                riskWindowStart = riskWindowStart,
+                                startAnchor = startAnchor,
+                                riskWindowEnd = riskWindowEnd,
+                                endAnchor = endAnchor,
+                                firstExposureOnly = firstExposureOnly,
+                                removeSubjectsWithPriorOutcome = removeSubjectsWithPriorOutcome,
+                                priorOutcomeLookback = priorOutcomeLookback,
+                                requireTimeAtRisk = requireTimeAtRisk,
+                                minTimeAtRisk = minTimeAtRisk,
+                                includeAllOutcomes = includeAllOutcomes)
+
+
+        if(!is.null(result)){
+          if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',sa$analysisId)))){
+            dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
+          }
+          ParallelLogger::logInfo("Saving results")
+          saveRDS(result, file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
+          ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
+        }
+      }
+      }
+    }
   # package the results: this creates a compressed file with sensitive details removed - ready to be reviewed and then
   # submitted to the network study manager
 
