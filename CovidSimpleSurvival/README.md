@@ -49,6 +49,8 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
 
 # Add the database containing the OMOP CDM data
 cdmDatabaseSchema <- 'cdm database schema'
+# Add the name of database containing the OMOP CDM data
+cdmDatabaseName <- 'cdm database name'
 # Add a database with read/write access as this is where the cohorts will be generated
 cohortDatabaseSchema <- 'work database schema'
 oracleTempSchema <- NULL
