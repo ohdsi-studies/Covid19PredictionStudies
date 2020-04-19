@@ -18,23 +18,23 @@
 #'
 #' @details
 #' This function executes the CovidVulnerabilityIndex Study.
-#' 
+#'
 #' @param connectionDetails    An object of type \code{connectionDetails} as created using the
 #'                             \code{\link[DatabaseConnector]{createConnectionDetails}} function in the
 #'                             DatabaseConnector package.
 #' @param usePackageCohorts    Whether to use the T and O cohorts in the package
 #' @param newTargetCohortId    The cohort id of a new target cohort (must be generated already)
 #' @param newTargetCohortName  The name of the new target cohort
-#' @param newOutcomeCohortId   The cohort id of a new outcome (must be generated already)  
+#' @param newOutcomeCohortId   The cohort id of a new outcome (must be generated already)
 #' @param newOutcomeCohortName  The name of the new outcome cohort
-#' @param newCohortDatabaseSchema Schema name where the new cohorts are stored. Note that for SQL Server, 
+#' @param newCohortDatabaseSchema Schema name where the new cohorts are stored. Note that for SQL Server,
 #'                             this should include both the database and schema name, for example 'cdm_data.dbo'.
 #' @param newCohortTable       The name of the table that contains the target population and outcome
-#'                             cohorts.                      
+#'                             cohorts.
 #' @param cdmDatabaseSchema    Schema name where your patient-level data in OMOP CDM format resides.
 #'                             Note that for SQL Server, this should include both the database and
 #'                             schema name, for example 'cdm_data.dbo'.
-#' @param cdmDatabaseName      Shareable name of the database 
+#' @param cdmDatabaseName      Shareable name of the database
 #' @param cohortDatabaseSchema Schema name where the cohorts and covariates are created. You will need to have
 #'                             write priviliges in this schema. Note that for SQL Server, this should
 #'                             include both the database and schema name, for example 'cdm_data.dbo'.
@@ -42,8 +42,8 @@
 #'                             This table will hold the target, outcome and variable cohorts used in this study.
 #' @param oracleTempSchema     Should be used in Oracle to specify a schema where the user has write
 #'                             priviliges for storing temporary tables.
-#' @param sampleSize           How many patients to sample from the target population                             
-#' @param riskWindowStart      The start of the risk window (in days) relative to the startAnchor.                           
+#' @param sampleSize           How many patients to sample from the target population
+#' @param riskWindowStart      The start of the risk window (in days) relative to the startAnchor.
 #' @param startAnchor          The anchor point for the start of the risk window. Can be "cohort start" or "cohort end".
 #' @param riskWindowEnd        The end of the risk window (in days) relative to the endAnchor parameter
 #' @param endAnchor            The anchor point for the end of the risk window. Can be "cohort start" or "cohort end".
@@ -63,8 +63,8 @@
 #' @param predictDeathAtOutpatientVisit   Run the model that predicts 30 day risk of death during outpatient visit with covid or flu
 #' @param predictCriticalAtInpatientVisit  Run the model that predicts requring critical care during initial inpatient visit
 #' @param predictDeathAtInpatientVisit  Run the model that predicts 30 day risk of death at initial inpatient visit with pneumonia
-#' @param packageResults       Should results be packaged for later sharing?     
-#' @param minCellCount         The minimum number of subjects contributing to a count before it can be included 
+#' @param packageResults       Should results be packaged for later sharing?
+#' @param minCellCount         The minimum number of subjects contributing to a count before it can be included
 #'                             in packaged results.
 #' @param verbosity            Sets the level of the verbosity. If the log level is at or higher in priority than the logger threshold, a message will print. The levels are:
 #'                                         \itemize{
@@ -74,8 +74,8 @@
 #'                                         \item{WARN}{Show warning messages}
 #'                                         \item{ERROR}{Show error messages}
 #'                                         \item{FATAL}{Be silent except for fatal errors}
-#'                                         }                              
-#' @param cdmVersion           The version of the common data model                             
+#'                                         }
+#' @param cdmVersion           The version of the common data model
 #'
 #' @examples
 #' \dontrun{
@@ -95,7 +95,7 @@
 #'         startAnchor = 'cohort start',
 #'         riskWindowEnd = 365,
 #'         endAnchor = 'cohort start',
-#'         outputFolder = "c:/temp/study_results", 
+#'         outputFolder = "c:/temp/study_results",
 #'         createCohorts = T,
 #'         predictSevereAtOutpatientVisit = T,
 #'         predictCriticalAtOutpatientVisit = T,
@@ -123,9 +123,9 @@ execute <- function(connectionDetails,
                     cohortTable = "cohort",
                     oracleTempSchema = cohortDatabaseSchema,
                     sampleSize = NULL,
-                    riskWindowStart = 1,
+                    riskWindowStart = 0,
                     startAnchor = 'cohort start',
-                    riskWindowEnd = 365,
+                    riskWindowEnd = 30,
                     endAnchor = 'cohort start',
                     firstExposureOnly = F,
                     removeSubjectsWithPriorOutcome = F,
@@ -145,23 +145,23 @@ execute <- function(connectionDetails,
 					          minCellCount = 10,
                     verbosity = "INFO",
                     cdmVersion = 5) {
-  
-  
-  standardCovariates <- FeatureExtraction::createCovariateSettings(useDemographicsAgeGroup = T, 
-                                                                   useDemographicsGender = T, 
+
+
+  standardCovariates <- FeatureExtraction::createCovariateSettings(useDemographicsAgeGroup = T,
+                                                                   useDemographicsGender = T,
                                                                    excludedCovariateConceptIds = 8532 )
-  
+
   if(usePackageCohorts){
     if(!is.null(newTargetCohortId) | !is.null(newOutcomeCohortId)){
       warning('Input new ids but also said to use package cohorts - new ids will be ignored...')
     }
   }
-  
+
   if (!file.exists(file.path(outputFolder,cdmDatabaseName)))
     dir.create(file.path(outputFolder,cdmDatabaseName), recursive = TRUE)
-  
+
   ParallelLogger::addDefaultFileLogger(file.path(outputFolder,cdmDatabaseName, "log.txt"))
-  
+
   if (createCohorts) {
     ParallelLogger::logInfo("Creating cohorts")
     createCohorts(connectionDetails = connectionDetails,
@@ -174,9 +174,9 @@ execute <- function(connectionDetails,
                   newCohortDatabaseSchema = newCohortDatabaseSchema,
                   newCohortTable = newCohortTable,
                   oracleTempSchema = oracleTempSchema,
-                  outputFolder = file.path(outputFolder, cdmDatabaseName)) 
+                  outputFolder = file.path(outputFolder, cdmDatabaseName))
   }
-  
+
   studyAnalyses <- getSettings(predictSevereAtOutpatientVisit = predictSevereAtOutpatientVisit,
                                predictCriticalAtOutpatientVisit = predictCriticalAtOutpatientVisit,
                                predictDeathAtOutpatientVisit = predictDeathAtOutpatientVisit,
@@ -212,8 +212,8 @@ execute <- function(connectionDetails,
                     requireTimeAtRisk = requireTimeAtRisk,
                     minTimeAtRisk = minTimeAtRisk,
                     includeAllOutcomes = includeAllOutcomes)
-      
-      
+
+
       if(!is.null(result)){
         if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',sa$analysisId)))){
           dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
@@ -224,14 +224,14 @@ execute <- function(connectionDetails,
       }
     }
   }
-  
+
   if (packageResults) {
     ParallelLogger::logInfo("Packaging results")
     packageResults(outputFolder = outputFolder,
                    cdmDatabaseName = cdmDatabaseName,
                    minCellCount = minCellCount)
   }
-   
+
   return(TRUE)
 }
 
