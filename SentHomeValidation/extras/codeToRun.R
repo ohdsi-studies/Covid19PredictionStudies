@@ -23,8 +23,8 @@ minCellCount <- 10
 
 # add connection details:
 # NOTE: make sure the folder you set for fftempdir exists or you will get an error
-options(fftempdir = 'S:/temp/tempff')
-dbms <- "pdw"
+options(fftempdir = 'T:/tempff')
+dbms <- ""
 user <- NULL
 pw <- NULL
 server <- ''
