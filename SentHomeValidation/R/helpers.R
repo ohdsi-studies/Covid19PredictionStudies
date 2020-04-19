@@ -130,7 +130,7 @@ addCohortNames <- function(data, IdColumnName = "cohortDefinitionId", nameColumn
   }
 
 
-  pathToCustom <- system.file("settings", 'cohortVariableSetting.csv', package = "SentHomeValidation")
+  pathToCustom <- system.file("settings", 'customCovariates.csv', package = "SentHomeValidation")
   if(pathToCustom!=""){
     # if custom cohort covaraites set:
     cohortVarsToCreate <- utils::read.csv(pathToCustom)
@@ -296,7 +296,7 @@ getData <- function(connectionDetails,
                     studyStartDate,
                     studyEndDate){
 
-  pathToCustom <- system.file("settings", 'CustomCovariates.csv', package = "CovidSimpleModels")
+  pathToCustom <- system.file("settings", 'CustomCovariates.csv', package = "SentHomeValidation")
   cohortVarsToCreate <- utils::read.csv(pathToCustom)
   covSets <- list()
   length(covSets) <- nrow(cohortVarsToCreate)+1
@@ -310,8 +310,7 @@ getData <- function(connectionDetails,
                                                     cohortId = cohortVarsToCreate$atlasId[i],
                                                     startDay=cohortVarsToCreate$startDay[i],
                                                     endDay=endDay,
-                                                    count= as.character(cohortVarsToCreate$count[i]),
-                                                    ageInteraction = as.character(cohortVarsToCreate$ageInteraction[i]))
+                                                    count= as.character(cohortVarsToCreate$count[i]))
   }
 
   result <- tryCatch({PatientLevelPrediction::getPlpData(connectionDetails = connectionDetails,
@@ -339,7 +338,7 @@ getData <- function(connectionDetails,
 
 
 getModel <- function(model = 'SimpleModel.csv'){
-  pathToCustom <- system.file("settings", model , package = "CovidSimpleModels")
+  pathToCustom <- system.file("settings", model , package = "SentHomeValidation")
   coefficients <- utils::read.csv(pathToCustom)
   return(coefficients)
 }

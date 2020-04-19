@@ -36,9 +36,23 @@ execute <- function(connectionDetails,
                     oracleTempSchema,
                     cohortTable,
                     outputFolder,
+                    cdmVersion = 5,
+                    endDay = -1,
+                    riskWindowStart = 2,
+                    startAnchor = 'cohort start',
+                    riskWindowEnd = 30,
+                    endAnchor = 'cohort start',
+                    firstExposureOnly = F,
+                    removeSubjectsWithPriorOutcome = F,
+                    priorOutcomeLookback = 1,
+                    requireTimeAtRisk = F,
+                    minTimeAtRisk = 1,
+                    includeAllOutcomes = T,
+                    usePackageCohorts = T,
                     createCohorts = T,
                     runValidation = T,
                     runSimple = F,
+                    predictSevereAtOutpatientVisit = F,
                     packageResults = T,
                     minCellCount = 5,
                     sampleSize = NULL,
@@ -81,6 +95,9 @@ execute <- function(connectionDetails,
   }
 
 if(runSimple){
+  standardCovariates <- FeatureExtraction::createCovariateSettings(useDemographicsAgeGroup = T,
+                                                                   useDemographicsGender = T,
+                                                                   excludedCovariateConceptIds = 8532 )
     studyAnalyses <- getSettings(predictSevereAtOutpatientVisit = predictSevereAtOutpatientVisit,
                                  usePackageCohorts = usePackageCohorts)
     if( nrow(studyAnalyses)!=0){
@@ -95,7 +112,7 @@ if(runSimple){
                                 studyStartDate = sa$studyStartDate,
                                 studyEndDate = sa$studyEndDate,
                                 cdmDatabaseSchema = cdmDatabaseSchema,
-                                cdmDatabaseName = cdmDatabaseName,
+                                cdmDatabaseName = databaseName,
                                 cohortDatabaseSchema = cohortDatabaseSchema,
                                 cohortTable = cohortTable,
                                 oracleTempSchema = oracleTempSchema,
@@ -116,12 +133,12 @@ if(runSimple){
 
 
         if(!is.null(result)){
-          if(!dir.exists(file.path(outputFolder,cdmDatabaseName, paste0('Analysis_',sa$analysisId)))){
-            dir.create(file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
+          if(!dir.exists(file.path(outputFolder,databaseName, paste0('Analysis_',sa$analysisId)))){
+            dir.create(file.path(outputFolder,databaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
           }
           ParallelLogger::logInfo("Saving results")
-          saveRDS(result, file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
-          ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,cdmDatabaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
+          saveRDS(result, file.path(outputFolder,databaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
+          ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,databaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
         }
       }
       }

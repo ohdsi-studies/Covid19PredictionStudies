@@ -1,13 +1,13 @@
 library(SentHomeValidation)
 
 # add details of your database setting:
-databaseName <- 'add a shareable name for the database you are currently validating on'
+databaseName <- ''
 
 # add the cdm database schema with the data
-cdmDatabaseSchema <- 'your cdm database schema for the validation'
+cdmDatabaseSchema <- ''
 
 # add the work database schema this requires read/write privileges
-cohortDatabaseSchema <- 'your work database schema'
+cohortDatabaseSchema <- ''
 
 # if using oracle please set the location of your temp schema
 oracleTempSchema <- NULL
@@ -16,19 +16,19 @@ oracleTempSchema <- NULL
 cohortTable <- 'SentHomeValidationCohortTable'
 
 # the location to save the prediction models results to:
-outputFolder <- './SentHomeValidation'
+outputFolder <- './results'
 
 # Min cell count in final results, values less than this are replaced by -1
 minCellCount <- 10
 
 # add connection details:
 # NOTE: make sure the folder you set for fftempdir exists or you will get an error
-options(fftempdir = 'T:/fftemp')
+options(fftempdir = 'S:/temp/tempff')
 dbms <- "pdw"
 user <- NULL
 pw <- NULL
-server <- Sys.getenv('server')
-port <- Sys.getenv('port')
+server <- ''
+port <-
 connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 server = server,
                                                                 user = user,
@@ -40,7 +40,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
 #======
 createCohorts <- TRUE
 runValidation <- TRUE
-runSimple <- TRUE
+runSimple <-     TRUE
 packageResults <- TRUE
 #=====
 
@@ -55,6 +55,7 @@ SentHomeValidation::execute(connectionDetails = connectionDetails,
                                  createCohorts = createCohorts,
                                  runValidation = runValidation,
                                  runSimple = runSimple,
+                                 predictSevereAtOutpatientVisit = TRUE,
                                  packageResults = packageResults,
                                  minCellCount = minCellCount,
                                  sampleSize = NULL)

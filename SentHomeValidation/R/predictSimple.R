@@ -21,7 +21,7 @@ predictSimple <- function(connectionDetails,
                                            minTimeAtRisk,
                                            includeAllOutcomes,
                                            model = 'SevereAtOutpatientVisit.csv',
-                                           analysisId = 1, 
+                                           analysisId = 1,
                           studyStartDate = "",
                           studyEndDate = ""
                           ){
@@ -41,11 +41,11 @@ predictSimple <- function(connectionDetails,
                      cdmVersion = cdmVersion,
                      studyStartDate = studyStartDate,
                      studyEndDate = studyEndDate)
-  
+
   if(is.null(plpData)){return(NULL)}
-  
+
   ParallelLogger::logInfo("Creating population")
-  population <- PatientLevelPrediction::createStudyPopulation(plpData = plpData, 
+  population <- PatientLevelPrediction::createStudyPopulation(plpData = plpData,
                                                               outcomeId = outcomeIds,
                                                               riskWindowStart = riskWindowStart,
                                                               startAnchor = startAnchor,
@@ -57,8 +57,8 @@ predictSimple <- function(connectionDetails,
                                                               requireTimeAtRisk = requireTimeAtRisk,
                                                               minTimeAtRisk = minTimeAtRisk,
                                                               includeAllOutcomes = includeAllOutcomes)
-  
-  
+
+
   # apply the model:
   plpModel <- list(model = getModel(model = model),
                    analysisId = paste0('Analysis_',analysisId),
@@ -82,17 +82,16 @@ predictSimple <- function(connectionDetails,
   result <- PatientLevelPrediction::applyModel(population = population,
                                                plpData = plpData,
                                                plpModel = plpModel)
-  
+
   result$inputSetting$database <- cdmDatabaseName
   result$executionSummary  <- list()
   result$model <- plpModel
   result$analysisRef <- list()
   result$covariateSummary <- PatientLevelPrediction:::covariateSummary(plpData = plpData, population = population)
-  
+
   result$covariateSummary <- merge(result$covariateSummary, result$model$model[,c('covariateId', 'points')], by ='covariateId')
   result$covariateSummary$covariateValue = result$covariateSummary$points
-  
+
  return(result)
   }
 
-  
