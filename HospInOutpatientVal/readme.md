@@ -56,7 +56,7 @@ Getting Started
 library(HospInOutpatientVal)
 
 # add details of your database setting:
-databaseName <- 'add a shareable name for the database you are currently validating on'
+cdmDatabaseName <- 'add a shareable name for the database you are currently validating on'
 
 # add the cdm database schema with the data
 cdmDatabaseSchema <- 'your cdm database schema for the validation'
@@ -91,7 +91,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
 
 # Now run the study:
 HospInOutpatientVal::execute(connectionDetails = connectionDetails,
-                 databaseName = databaseName,
+                 databaseName = cdmDatabaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
                  oracleTempSchema = oracleTempSchema,
@@ -105,7 +105,7 @@ HospInOutpatientVal::execute(connectionDetails = connectionDetails,
                  
 # If the validation study runs to completion and returns results, package it up ready to share with the study owner (but remove counts less than 10) by running:
 HospInOutpatientVal::execute(connectionDetails = connectionDetails,
-                 databaseName = databaseName,
+                 databaseName = cdmDatabaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
                  oracleTempSchema = oracleTempSchema,
@@ -120,7 +120,7 @@ HospInOutpatientVal::execute(connectionDetails = connectionDetails,
                  
 # If your target cohort is large use the sampleSize setting to sample from the cohort:
 HospInOutpatientVal::execute(connectionDetails = connectionDetails,
-                 databaseName = databaseName,
+                 databaseName = cdmDatabaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
                  oracleTempSchema = oracleTempSchema,
@@ -153,7 +153,7 @@ fileName <- file.path(outputFolder, paste0(databaseName,'.zip'))
 sftpUploadFile(privateKeyFileName = privateKeyFileName, 
                userName = userName, 
                fileName = fileName,
-               remoteFolder = file.path("./covid19PredHospInOutpatientVal", databaseName)
+               remoteFolder = file.path("./covid19PredHospInOutpatientVal", cdmDatabaseName)
 ```
 
 
