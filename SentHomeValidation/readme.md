@@ -91,33 +91,48 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 password = pw,
                                                                 port = port)
 
-# Now run the study:
+# Pick what parts of the study to run (all need to be run so recommend to not edit between ===)
+#======
+createCohorts  <- TRUE
+runValidation  <- TRUE
+runSimple      <- TRUE
+packageResults <- TRUE
+#=====
+
+# Now run the study
 SentHomeValidation::execute(connectionDetails = connectionDetails,
-                 databaseName = cdmDatabaseName,
-                 cdmDatabaseSchema = cdmDatabaseSchema,
-                 cohortDatabaseSchema = cohortDatabaseSchema,
-                 oracleTempSchema = oracleTempSchema,
-                 cohortTable = cohortTable,
-                 outputFolder = outputFolder,
-                 createCohorts = T,
-                 runValidation = T,
-                 packageResults = F,
-                 minCellCount = 5,
-                 sampleSize = NULL)
+                                 databaseName = databaseName,
+                                 cdmDatabaseSchema = cdmDatabaseSchema,
+                                 cohortDatabaseSchema = cohortDatabaseSchema,
+                                 oracleTempSchema = oracleTempSchema,
+                                 cohortTable = cohortTable,
+                                 outputFolder = outputFolder,
+                                 createCohorts = createCohorts,
+                                 runValidation = runValidation,
+                                 runSimple = runSimple,
+                                 predictSevereAtOutpatientVisit = TRUE,
+                                 packageResults = packageResults,
+                                 minCellCount = minCellCount,
+                                 sampleSize = NULL)
+
                  
 # If the validation study runs to completion and returns results, package it up ready to share with the study owner (but remove counts less than 10) by running:
+
 SentHomeValidation::execute(connectionDetails = connectionDetails,
-                 databaseName = cdmDatabaseName,
-                 cdmDatabaseSchema = cdmDatabaseSchema,
-                 cohortDatabaseSchema = cohortDatabaseSchema,
-                 oracleTempSchema = oracleTempSchema,
-                 cohortTable = cohortTable,
-                 outputFolder = outputFolder,
-                 createCohorts = F,
-                 runValidation = F,
-                 packageResults = T,
-                 minCellCount = 10,
-                 sampleSize = NULL)
+               databaseName = databaseName,
+               cdmDatabaseSchema = cdmDatabaseSchema,
+               cohortDatabaseSchema = cohortDatabaseSchema,
+               oracleTempSchema = oracleTempSchema,
+               cohortTable = cohortTable,
+               outputFolder = outputFolder,
+               createCohorts = F,
+               runValidation = F,
+               runSimple = F,
+               predictSevereAtOutpatientVisit = TRUE,
+               packageResults = T,
+               minCellCount = minCellCount,
+               sampleSize = NULL)
+
                  
                  
 # If your target cohort is large use the sampleSize setting to sample from the cohort:
@@ -130,6 +145,8 @@ SentHomeValidation::execute(connectionDetails = connectionDetails,
                  outputFolder = outputFolder,
                  createCohorts = T,
                  runValidation = T,
+                 runSimple = F,
+                 predictSevereAtOutpatientVisit = TRUE,
                  packageResults = F,
                  minCellCount = 10,
                  sampleSize = 1000000)
