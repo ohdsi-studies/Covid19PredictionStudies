@@ -1,6 +1,5 @@
 cohortId,atlasId,name
 5889,5889,Hosp_pneumonia_or_others_intensive_services_or_death
-5892,5892,ID25_Hosp_with_pneumonia
 5893,5893,Hosp_pneumonia_or_ARDS_or_sepsis_or_AKI
 5895,5895,visit_with_Covid_flu_or_symp_with_pneumonia_no_admission
 5896,5896,visit_with_Covid_flu_or_symp_no_pneumonia_no_admission
