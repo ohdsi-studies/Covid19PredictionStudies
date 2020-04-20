@@ -33,9 +33,9 @@ packageResults <- function(outputFolder,
   # for each analysis copy the requested files...
   folders <- list.dirs(path = outputFolder, recursive = T, full.names = F)
   folders <- folders[grep('Analysis_', folders)]
-  if(length(grep('inst/plp_models', folders))>0){
-    folders <- folders[-grep('inst/plp_models', folders)] #in case using package directory
-  }
+  # if(length(grep('inst/plp_models', folders))>0){
+  #   folders <- folders[-grep('inst/plp_models', folders)] #in case using package directory
+  # }
 
   if(length(folders)==0){
     stop('No results to export...')
@@ -66,6 +66,35 @@ packageResults <- function(outputFolder,
                                                      includePredictionDistribution=T,
                                                      includeCovariateSummary=T)
       saveRDS(result, file.path(exportFolder,folder, 'validationResult.rds'))
+
+    }
+    # loads analysis results
+    if(file.exists(file.path(outputFolder,folder, 'validationResults.rds'))){
+      plpResult <- readRDS(file.path(outputFolder,folder, 'validationResults.rds'))
+      plpResult$model$predict <- NULL
+      if(minCellCount!=0){
+        plpResult <- PatientLevelPrediction::transportPlp(plpResult,
+                                                          save = F,
+                                                          n=minCellCount,
+                                                          includeEvaluationStatistics=T,
+                                                          includeThresholdSummary=T,
+                                                          includeDemographicSummary=T,
+                                                          includeCalibrationSummary =T,
+                                                          includePredictionDistribution=T,
+                                                          includeCovariateSummary=T)
+      } else {
+        plpResult <- PatientLevelPrediction::transportPlp(plpResult,
+                                                          save = F,
+                                                          n=NULL,
+                                                          includeEvaluationStatistics=T,
+                                                          includeThresholdSummary=T,
+                                                          includeDemographicSummary=T,
+                                                          includeCalibrationSummary =T,
+                                                          includePredictionDistribution=T,
+                                                          includeCovariateSummary=T)
+      }
+      #for export use result with no s at the end
+      saveRDS(plpResult, file.path(exportFolder,folder, 'validationResult.rds'))
 
     }
   }
