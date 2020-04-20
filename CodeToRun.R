@@ -166,18 +166,25 @@ SevereInHospVal::execute(connectionDetails = connectionDetails,
                          sampleSize = sampleSize)
 
 
+packageStudy <- function(outputFolder){
+
+ for(studyName in c('SevereInHospValResults','SentHomeValidationResults',
+                    'HospInOutpatientValResults','CovidSimpleModelsResults',
+                    'CovidVulnerabilityIndexResults', 'CovidSimpleSurvivalResults')){
+   # for each folder in expected analyses, find zipped file and move into  outputFolder/allExport/studyNameDatabaseName
+   zipLoc <- file.path(outputFolder,studyName, paste0(cdmDatabaseName, '.zip'))
+   newLoc <- file.path(outputFolder, 'allExport', paste0(studyName,'_',cdmDatabaseName, '.zip'))
+   # move zip file to main output file.path(outputFolder,'allExport'):
+   file.copy(from = zipLoc, to = newLoc, overwrite = T, recursive = T)
+}
+   # compress file.path(outputFolder,'allExport')
+  OhdsiSharing::compressFolder(file.path(outputFolder, 'allExport'),
+                               file.path(outputFolder, 'allExport.zip'))
+   # remove file.path(outputFolder,'allExport')
+  unlink(file.path(outputFolder, 'allExport'), recursive = T)
+   # all results have been process: removing sensitive date and compressed into file.path(outputFolder,'allExport.zip')
+   return(file.path(outputFolder,'allExport.zip'))
+}
 # Package the results:
 packageStudy(outputFolder)
 
-
-
-
-packageStudy <- function(outputFolder){
-
-  # for each folder in expected analyses, find zipped file and move into  outputFolder/allExport/studyNameDatabaseName
-
-
-  # zip allExport and remove temp folder
-
-
-}
