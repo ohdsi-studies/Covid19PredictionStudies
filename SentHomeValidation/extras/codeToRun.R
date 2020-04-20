@@ -26,8 +26,8 @@ minCellCount <- 10
 options(fftempdir = 'T:/tempff')
 
 dbms <- ""
-user <- NULL
-pw <- NULL
+user <- ''
+pw <- ''
 server <- ''
 port <-
 connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
@@ -39,9 +39,9 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
 
 # Pick what parts of the study to run (all need to be run so recommend to not edit between ===)
 #======
-createCohorts <- TRUE
-runValidation <- TRUE
-runSimple <-     TRUE
+createCohorts  <- TRUE
+runValidation  <- TRUE
+runSimple      <- TRUE
 packageResults <- TRUE
 #=====
 
