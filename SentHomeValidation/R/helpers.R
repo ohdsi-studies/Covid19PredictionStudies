@@ -77,7 +77,7 @@ addCohortNames <- function(data, IdColumnName = "cohortDefinitionId", nameColumn
   pathToCsv <- system.file("settings", "CohortsToCreate.csv", package = "SentHomeValidation")
   cohortsToCreate <- utils::read.csv(pathToCsv)
 
-  idToName <- data.frame(cohortId = c(cohortsToCreate$cohortId),
+  idToName <- data.frame(cohortId = c(cohortsToCreate$atlasId),
                          cohortName = c(as.character(cohortsToCreate$name)))
   idToName <- idToName[order(idToName$cohortId), ]
   idToName <- idToName[!duplicated(idToName$cohortId), ]
