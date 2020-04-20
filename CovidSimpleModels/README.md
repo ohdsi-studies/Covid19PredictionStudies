@@ -152,7 +152,8 @@ fileName <- file.path(outputFolder, paste0(databaseName,'.zip'))
 sftpUploadFile(privateKeyFileName = privateKeyFileName, 
                userName = userName, 
                fileName = fileName,
-               remoteFolder = file.path("./covid19PredCovidSimpleModels", datbaseName)```
+               remoteFolder = file.path("./covid19PredCovidSimpleModels", cdmDatabaseName)
+```
 
 # Development status
 Under development.
