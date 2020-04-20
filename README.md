@@ -130,3 +130,47 @@ You need to install OhdsiSharing to send the results:
 devtools::install_github("OHDSI/OhdsiSharing")
 ```
 
+To install and run all the validation studies run the code [here](https://github.com/ohdsi-studies/Covid19PredictionStudies/blob/master/CodeToRun.R) where you will need to enter the CDM data connection and details, the outputFolder location and sharing settings such as minCellCount.
+
+
+To submit the results
+============
+Once you have sucessfully executed the study you will find a compressed folder in the location specified by '[outputFolder]/allExport.zip'.  The study should remove sensitive data but we encourage researchers to also check the contents of this folder.  
+
+To send the compressed folder results please message one of the leads (**[jreps](https://forums.ohdsi.org/u/jreps) , [RossW](https://forums.ohdsi.org/u/RossW)**) and we will give you the privateKeyFileName and userName.  You can then run the following R code to share the results:
+
+```r
+# If you don't have the R package OhdsiSharing then install it using github (uncomment the line below)
+# install_github("ohdsi/OhdsiSharing")
+
+library("OhdsiSharing")
+privateKeyFileName <- "message us for this"
+userName <- "message us for this"
+fileName <- file.path(outputFolder, 'allExport.zip')
+sftpUploadFile(privateKeyFileName, userName, fileName)
+```
+
+
+## Result object
+After running the study you will get multiple 'validationResult.rds' objects. You can load these objects using the R function readRDS:
+```r
+result <- readRDS('[location to rds file]/validationResults.rds')
+```
+
+the 'result' object is a list containing the following:
+
+| Object | Description | Edited by minCellCount |
+| ----------| ---------------------------------------------------| ----------------------- |
+| result$inputSetting | The outcome and cohort ids and the databaseName | No | 
+| result$executionSummary | Information about the R version, PatientLevelPrediction version and execution platform info | No | 
+| result$model | Information about the model (name and type) | No | 
+| result$analysisRef | Used to store a unique reference for the study | No | 
+| result$covariateSummary | A dataframe with summary information about how often the covariates occured for those with and without the outcome | Yes | 
+| result$performanceEvaluation$evaluationStatistics | Performance metrics and sizes | No | 
+| result$performanceEvaluation$thresholdSummary | Operating characteristcs @ 100 thresholds | No | 
+| result$performanceEvaluation$demographicSummary | Calibration per age group | Yes | 
+| result$performanceEvaluation$calibrationSummary | Calibration at risk score deciles | No | 
+| result$performanceEvaluation$predictionDistribution | Distribution of risk score for those with and without the outcome | No | 
+
+
+When packaging the results all cell counts (that could contain sensitive data) less than minCellCount are replaced by -1.
