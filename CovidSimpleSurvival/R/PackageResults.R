@@ -46,8 +46,8 @@ packageResults <- function(outputFolder,
     }
     
     # loads analysis results
-    if(file.exists(file.path(outputFolder,cdmDatabaseName,folder, 'validationResults.rds'))){
-      plpResult <- readRDS(file.path(outputFolder,cdmDatabaseName,folder, 'validationResults.rds'))
+    if(file.exists(file.path(outputFolder,cdmDatabaseName,folder, 'validationResult.rds'))){
+      plpResult <- readRDS(file.path(outputFolder,cdmDatabaseName,folder, 'validationResult.rds'))
       plpResult$model$predict <- NULL
       if(minCellCount!=0){
         plpResult <- PatientLevelPrediction::transportPlp(plpResult,
@@ -71,7 +71,7 @@ packageResults <- function(outputFolder,
                                              includeCovariateSummary=T)
       }
       
-      saveRDS(plpResult, file.path(exportFolder,folder, 'validationResults.rds'))
+      saveRDS(plpResult, file.path(exportFolder,folder, 'validationResult.rds'))
       
     }
   }

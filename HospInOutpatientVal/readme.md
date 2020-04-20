@@ -150,7 +150,10 @@ library("OhdsiSharing")
 privateKeyFileName <- "message us for this"
 userName <- "message us for this"
 fileName <- file.path(outputFolder, paste0(databaseName,'.zip'))
-sftpUploadFile(privateKeyFileName, userName, fileName)
+sftpUploadFile(privateKeyFileName = privateKeyFileName, 
+               userName = userName, 
+               fileName = fileName,
+               remoteFolder = file.path("./covid19PredHospInOutpatientVal", databaseName)
 ```
 
 
