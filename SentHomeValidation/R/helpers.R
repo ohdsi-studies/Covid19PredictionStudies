@@ -77,7 +77,7 @@ addCohortNames <- function(data, IdColumnName = "cohortDefinitionId", nameColumn
   pathToCsv <- system.file("settings", "CohortsToCreate.csv", package = "SentHomeValidation")
   cohortsToCreate <- utils::read.csv(pathToCsv)
 
-  idToName <- data.frame(cohortId = c(cohortsToCreate$cohortId),
+  idToName <- data.frame(cohortId = c(cohortsToCreate$atlasId),
                          cohortName = c(as.character(cohortsToCreate$name)))
   idToName <- idToName[order(idToName$cohortId), ]
   idToName <- idToName[!duplicated(idToName$cohortId), ]
@@ -130,7 +130,7 @@ addCohortNames <- function(data, IdColumnName = "cohortDefinitionId", nameColumn
   }
 
 
-  pathToCustom <- system.file("settings", 'cohortVariableSetting.csv', package = "SentHomeValidation")
+  pathToCustom <- system.file("settings", 'customCovariates.csv', package = "SentHomeValidation")
   if(pathToCustom!=""){
     # if custom cohort covaraites set:
     cohortVarsToCreate <- utils::read.csv(pathToCustom)
@@ -278,4 +278,128 @@ transportPlpModels <- function(analysesDir,
                  includeCovariateSummary=T, save=T)
 
   }
+}
+
+getData <- function(connectionDetails,
+                    cohortId,
+                    outcomeIds,
+                    cdmDatabaseSchema,
+                    cdmDatabaseName,
+                    cohortDatabaseSchema,
+                    cohortTable,
+                    oracleTempSchema,
+                    standardCovariates,
+                    endDay,
+                    firstExposureOnly,
+                    sampleSize,
+                    cdmVersion,
+                    studyStartDate,
+                    studyEndDate){
+
+  pathToCustom <- system.file("settings", 'CustomCovariates.csv', package = "SentHomeValidation")
+  cohortVarsToCreate <- utils::read.csv(pathToCustom)
+  covSets <- list()
+  length(covSets) <- nrow(cohortVarsToCreate)+1
+  covSets[[1]] <- standardCovariates
+
+  for(i in 1:nrow(cohortVarsToCreate)){
+    covSets[[1+i]] <- createCohortCovariateSettings(covariateName = as.character(cohortVarsToCreate$cohortName[i]),
+                                                    covariateId = cohortVarsToCreate$cohortId[i]*1000+456,
+                                                    cohortDatabaseSchema = cohortDatabaseSchema,
+                                                    cohortTable = cohortTable,
+                                                    cohortId = cohortVarsToCreate$atlasId[i],
+                                                    startDay=cohortVarsToCreate$startDay[i],
+                                                    endDay=endDay,
+                                                    count= as.character(cohortVarsToCreate$count[i]))
+  }
+
+  result <- tryCatch({PatientLevelPrediction::getPlpData(connectionDetails = connectionDetails,
+                                                         cdmDatabaseSchema = cdmDatabaseSchema,
+                                                         oracleTempSchema = oracleTempSchema,
+                                                         cohortId = as.double(as.character(cohortId)),
+                                                         outcomeIds = as.double(as.character(outcomeIds)),
+                                                         cohortDatabaseSchema = cohortDatabaseSchema,
+                                                         outcomeDatabaseSchema = cohortDatabaseSchema,
+                                                         cohortTable = cohortTable,
+                                                         outcomeTable = cohortTable,
+                                                         cdmVersion = cdmVersion,
+                                                         firstExposureOnly = firstExposureOnly,
+                                                         sampleSize =  sampleSize,
+                                                         covariateSettings = covSets,
+                                                         studyStartDate = studyStartDate,
+                                                         studyEndDate = studyEndDate)},
+                     error = function(e) {
+                       return(NULL)
+                     })
+
+  return(result)
+
+}
+
+
+getModel <- function(model = 'SimpleModel.csv'){
+  pathToCustom <- system.file("settings", model , package = "SentHomeValidation")
+  coefficients <- utils::read.csv(pathToCustom)
+  return(coefficients)
+}
+
+getPredict <- function(model){
+  predictExisting <- function(plpData, population){
+    coefficients <- model
+
+    prediction <- merge(plpData$covariates, ff::as.ffdf(coefficients), by = "covariateId")
+    prediction$value <- prediction$covariateValue * prediction$points
+    prediction <- PatientLevelPrediction:::bySumFf(prediction$value, prediction$rowId)
+    colnames(prediction) <- c("rowId", "value")
+    prediction <- merge(population, prediction, by ="rowId", all.x = TRUE)
+    prediction$value[is.na(prediction$value)] <- 0
+
+    # add any final mapping here (e.g., add intercept and mapping)
+    prediction$value <- prediction$value + model$points[model$covariateId==0]
+    prediction$value <- prediction$value/10
+    prediction$value <- 1/(1+exp(-1*prediction$value))
+
+    scaleVal <- max(prediction$value)
+    if(scaleVal>1){
+      prediction$value <- prediction$value/scaleVal
+    }
+
+    attr(prediction, "metaData") <- list(predictionType = 'binary', scale = scaleVal)
+
+    return(prediction)
+  }
+  return(predictExisting)
+}
+
+getSettings <- function(predictSevereAtOutpatientVisit,
+                        predictCriticalAtOutpatientVisit,
+                        predictDeathAtOutpatientVisit,
+                        predictCriticalAtInpatientVisit,
+                        predictDeathAtInpatientVisit,
+                        usePackageCohorts){
+
+  settingR <- c()
+
+  if(predictSevereAtOutpatientVisit){
+
+    if(!usePackageCohorts){
+      settingR <- rbind(settingR,
+                        c(cohortId = 1,
+                          outcomeId = 2,
+                          analysisId = 4001,
+                          model = 'SevereAtOutpatientVisit.csv'))
+    } else{
+      settingR <- rbind(settingR,
+                        data.frame(cohortId = c(5895,5896,5895,5896,559,560,561,562),
+                                   outcomeId = rep(5889,8),
+                                   studyStartDate = c("","","2020-01-01","2020-01-01","2020-01-01","2020-01-01","2020-01-01","2020-01-01"),
+                                   studyEndDate =c("","","2020-05-31","2020-05-31","2020-05-31","2020-05-31","2020-05-31","2020-05-31"),
+                                   analysisId = c(10000,20000,10001,20001,10002,20002,10003,20003),
+                                   model = rep('SevereAtOutpatientVisit.csv',8)))
+    }
+  }
+
+    settingR <- as.data.frame(settingR)
+  return(settingR)
+
 }

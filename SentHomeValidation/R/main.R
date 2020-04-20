@@ -36,8 +36,23 @@ execute <- function(connectionDetails,
                     oracleTempSchema,
                     cohortTable,
                     outputFolder,
+                    cdmVersion = 5,
+                    endDay = -1,
+                    riskWindowStart = 2,
+                    startAnchor = 'cohort start',
+                    riskWindowEnd = 30,
+                    endAnchor = 'cohort start',
+                    firstExposureOnly = F,
+                    removeSubjectsWithPriorOutcome = F,
+                    priorOutcomeLookback = 1,
+                    requireTimeAtRisk = F,
+                    minTimeAtRisk = 1,
+                    includeAllOutcomes = T,
+                    usePackageCohorts = T,
                     createCohorts = T,
                     runValidation = T,
+                    runSimple = F,
+                    predictSevereAtOutpatientVisit = F,
                     packageResults = T,
                     minCellCount = 5,
                     sampleSize = NULL,
@@ -79,6 +94,56 @@ execute <- function(connectionDetails,
                                                        verbosity = verbosity)
   }
 
+if(runSimple){
+  standardCovariates <- FeatureExtraction::createCovariateSettings(useDemographicsAgeGroup = T,
+                                                                   useDemographicsGender = T,
+                                                                   excludedCovariateConceptIds = 8532 )
+    studyAnalyses <- getSettings(predictSevereAtOutpatientVisit = predictSevereAtOutpatientVisit,
+                                 usePackageCohorts = usePackageCohorts)
+    if( nrow(studyAnalyses)!=0){
+      if( nrow(studyAnalyses)!=0){
+      for(k in 1:nrow(studyAnalyses)){
+        sa <- studyAnalyses[k,]
+        result <- predictSimple(connectionDetails = connectionDetails,
+                                cohortId = sa$cohortId,
+                                outcomeIds = sa$outcomeId,
+                                model = sa$model,
+                                analysisId = sa$analysisId,
+                                studyStartDate = sa$studyStartDate,
+                                studyEndDate = sa$studyEndDate,
+                                cdmDatabaseSchema = cdmDatabaseSchema,
+                                cdmDatabaseName = databaseName,
+                                cohortDatabaseSchema = cohortDatabaseSchema,
+                                cohortTable = cohortTable,
+                                oracleTempSchema = oracleTempSchema,
+                                standardCovariates = standardCovariates,
+                                endDay = endDay,
+                                sampleSize = sampleSize,
+                                cdmVersion = cdmVersion,
+                                riskWindowStart = riskWindowStart,
+                                startAnchor = startAnchor,
+                                riskWindowEnd = riskWindowEnd,
+                                endAnchor = endAnchor,
+                                firstExposureOnly = firstExposureOnly,
+                                removeSubjectsWithPriorOutcome = removeSubjectsWithPriorOutcome,
+                                priorOutcomeLookback = priorOutcomeLookback,
+                                requireTimeAtRisk = requireTimeAtRisk,
+                                minTimeAtRisk = minTimeAtRisk,
+                                includeAllOutcomes = includeAllOutcomes)
+
+
+        if(!is.null(result)){
+          if(!dir.exists(file.path(outputFolder,databaseName, paste0('Analysis_',sa$analysisId)))){
+            dir.create(file.path(outputFolder,databaseName,paste0('Analysis_',sa$analysisId)), recursive = T)
+          }
+          ParallelLogger::logInfo("Saving results")
+          saveRDS(result, file.path(outputFolder,databaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds'))
+          ParallelLogger::logInfo(paste0("Results saved to:",file.path(outputFolder,databaseName,paste0('Analysis_',sa$analysisId),'validationResults.rds')))
+        }
+      }
+      }
+    }
+}
   # package the results: this creates a compressed file with sensitive details removed - ready to be reviewed and then
   # submitted to the network study manager
 
