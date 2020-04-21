@@ -166,13 +166,13 @@ SevereInHospVal::execute(connectionDetails = connectionDetails,
                          sampleSize = sampleSize)
 
 
-packageStudy <- function(outputFolder){
+packageStudy <- function(outputFolder,cdmDatabaseName){
 
 
    if(!dir.exists(file.path(outputFolder, 'allExport'))){
     dir.create(file.path(outputFolder, 'allExport'))
-               } 
-     
+               }
+
    for(studyName in c('SevereInHospValResults','SentHomeValidationResults',
                     'HospInOutpatientValResults','CovidSimpleModelsResults',
                     'CovidVulnerabilityIndexResults', 'CovidSimpleSurvivalResults')){
@@ -180,7 +180,7 @@ packageStudy <- function(outputFolder){
    zipLoc <- file.path(outputFolder,studyName, paste0(cdmDatabaseName, '.zip'))
    newLoc <- file.path(outputFolder, 'allExport', paste0(studyName,'_',cdmDatabaseName, '.zip'))
    # move zip file to main output file.path(outputFolder,'allExport'):
-   file.copy(from = zipLoc, to = newLoc, overwrite = T, recursive = T)
+   file.copy(from = zipLoc, to = newLoc, overwrite = T, recursive = F)
 }
    # compress file.path(outputFolder,'allExport')
   OhdsiSharing::compressFolder(file.path(outputFolder, 'allExport'),
@@ -191,5 +191,6 @@ packageStudy <- function(outputFolder){
    return(file.path(outputFolder,'allExport.zip'))
 }
 # Package the results:
-packageStudy(outputFolder)
+packageStudy(outputFolder = outputFolder,
+             cdmDatabaseName = cdmDatabaseName)
 
