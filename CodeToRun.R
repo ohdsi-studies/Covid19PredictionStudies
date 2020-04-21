@@ -169,7 +169,7 @@ SevereInHospVal::execute(connectionDetails = connectionDetails,
 packageStudy <- function(outputFolder){
 
 
-   if(!dir.exists(file.path(outputFolder, 'allExport')){
+   if(!dir.exists(file.path(outputFolder, 'allExport'))){
     dir.create(file.path(outputFolder, 'allExport'))
                } 
      
