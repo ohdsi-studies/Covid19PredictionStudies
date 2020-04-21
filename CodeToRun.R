@@ -168,7 +168,12 @@ SevereInHospVal::execute(connectionDetails = connectionDetails,
 
 packageStudy <- function(outputFolder){
 
- for(studyName in c('SevereInHospValResults','SentHomeValidationResults',
+
+   if(!dir.exists(file.path(outputFolder, 'allExport')){
+    dir.create(file.path(outputFolder, 'allExport'))
+               } 
+     
+   for(studyName in c('SevereInHospValResults','SentHomeValidationResults',
                     'HospInOutpatientValResults','CovidSimpleModelsResults',
                     'CovidVulnerabilityIndexResults', 'CovidSimpleSurvivalResults')){
    # for each folder in expected analyses, find zipped file and move into  outputFolder/allExport/studyNameDatabaseName
