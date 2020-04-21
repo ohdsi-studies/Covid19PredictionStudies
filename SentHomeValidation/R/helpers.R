@@ -392,8 +392,8 @@ getSettings <- function(predictSevereAtOutpatientVisit,
       settingR <- rbind(settingR,
                         data.frame(cohortId = c(5895,5896,5895,5896,559,560,561,562),
                                    outcomeId = rep(5889,8),
-                                   studyStartDate = c("","","2020-01-01","2020-01-01","2020-01-01","2020-01-01","2020-01-01","2020-01-01"),
-                                   studyEndDate =c("","","2020-05-31","2020-05-31","2020-05-31","2020-05-31","2020-05-31","2020-05-31"),
+                                   studyStartDate = c("","","20200101","20200101","20200101","20200101","20200101","20200101"),
+                                   studyEndDate =c("","","20200531","20200531","20200531","20200531","20200531","20200531"),
                                    analysisId = c(10000,20000,10001,20001,10002,20002,10003,20003),
                                    model = rep('SevereAtOutpatientVisit.csv',8)))
     }
