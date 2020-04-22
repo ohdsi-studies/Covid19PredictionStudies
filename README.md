@@ -1,4 +1,4 @@
-Covid19PredictionStudies
+Validation of simple patient-level prediction models for predicting short-term and long-term survival in patients hospitalized with pneumonia and ARDS and requiring intensive care: a rapid network study to inform the management of COVID-19
 =============
 
 <img src="https://img.shields.io/badge/Study%20Status-Started-blue.svg" alt="Study Status: Started">
@@ -14,7 +14,7 @@ Covid19PredictionStudies
 - Publications: **-**
 - Results explorer: **-**
 
-This study repo will include all the prediction model development and validation packages from the covid-19 OHDSI study-a-thon
+The objective of this study is to validate patient-level prediction models that were developed to predict short-term (death within 60 days) and long-term (death within 365 days) within patients hospitalized with pneumonia and acute respiratory distress syndrome (ARDS) and requiring intensive care. The simple models were developed using a US claims dataset with complete death records. The two outcomes predicted are 1) death record 0 to 60 days after hospitalization start date and 2) death record 0 to 365 days after hospitalization start date.
 
 Background
 =============
