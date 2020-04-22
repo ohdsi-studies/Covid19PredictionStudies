@@ -1,4 +1,4 @@
-Covid19PredictionStudies
+Development and validation of complex and simple patient-level prediction models for predicting various outcomes in COVID patients: a rapid network study to inform the management of COVID-19
 =============
 
 <img src="https://img.shields.io/badge/Study%20Status-Started-blue.svg" alt="Study Status: Started">
@@ -14,7 +14,7 @@ Covid19PredictionStudies
 - Publications: **-**
 - Results explorer: **-**
 
-This study repo will include all the prediction model development and validation packages from the covid-19 OHDSI study-a-thon
+The objective of this study is to develop and validate various patient-level prediction models for COVID-19 patients. 
 
 Background
 =============
