@@ -154,7 +154,7 @@ sftpUploadFile(privateKeyFileName, userName, fileName)
 ## Result object
 After running the study you will get multiple 'validationResult.rds' objects. You can load these objects using the R function readRDS:
 ```r
-result <- readRDS('[location to rds file]/validationResults.rds')
+result <- readRDS('[location to rds file]/validationResult.rds')
 ```
 
 the 'result' object is a list containing the following:
