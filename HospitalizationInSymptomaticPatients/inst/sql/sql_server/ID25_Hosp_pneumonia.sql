@@ -40,7 +40,6 @@ UNION  select c.concept_id
 WHERE E.concept_id is null
 ) C;
 
-UPDATE STATISTICS #Codesets;
 
 with primary_events (event_id, person_id, start_date, end_date, op_start_date, op_end_date, visit_occurrence_id) as
 (
@@ -63,8 +62,8 @@ from
   FROM @cdm_database_schema.VISIT_OCCURRENCE vo
 JOIN #Codesets codesets on ((vo.visit_concept_id = codesets.concept_id and codesets.codeset_id = 1))
 ) C
-JOIN @cdm_database_schema.PERSON P on C.person_id = P.person_id
-WHERE YEAR(C.visit_start_date) - P.year_of_birth >= 18
+
+
 -- End Visit Occurrence Criteria
 
   ) E

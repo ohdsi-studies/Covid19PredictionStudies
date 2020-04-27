@@ -49,6 +49,9 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
 
 # Add the database containing the OMOP CDM data
 cdmDatabaseSchema <- 'cdm database schema'
+# Add the name of database containing the OMOP CDM data
+cdmDatabaseName <- 'cdm database name'
+
 # Add a database with read/write access as this is where the cohorts will be generated
 cohortDatabaseSchema <- 'work database schema'
 oracleTempSchema <- NULL
@@ -146,7 +149,10 @@ library("OhdsiSharing")
 privateKeyFileName <- "message us for this"
 userName <- "message us for this"
 fileName <- file.path(outputFolder, paste0(databaseName,'.zip'))
-sftpUploadFile(privateKeyFileName, userName, fileName)
+sftpUploadFile(privateKeyFileName = privateKeyFileName, 
+               userName = userName, 
+               fileName = fileName,
+               remoteFolder = file.path("./covid19PredCovidSimpleModels", cdmDatabaseName)
 ```
 
 # Development status
