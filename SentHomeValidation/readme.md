@@ -58,7 +58,7 @@ devtools::install_github("ohdsi-studies/Covid19PredictionStudies/SentHomeValidat
 library(SentHomeValidation)
 
 # add details of your database setting:
-databaseName <- 'add a shareable name for the database you are currently validating on'
+cdmDatabaseName <- 'add a shareable name for the database you are currently validating on'
 
 # add the cdm database schema with the data
 cdmDatabaseSchema <- 'your cdm database schema for the validation'
@@ -91,38 +91,53 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 password = pw,
                                                                 port = port)
 
-# Now run the study:
+# Pick what parts of the study to run (all need to be run so recommend to not edit between ===)
+#======
+createCohorts  <- TRUE
+runValidation  <- TRUE
+runSimple      <- TRUE
+packageResults <- TRUE
+#=====
+
+# Now run the study
 SentHomeValidation::execute(connectionDetails = connectionDetails,
-                 databaseName = databaseName,
-                 cdmDatabaseSchema = cdmDatabaseSchema,
-                 cohortDatabaseSchema = cohortDatabaseSchema,
-                 oracleTempSchema = oracleTempSchema,
-                 cohortTable = cohortTable,
-                 outputFolder = outputFolder,
-                 createCohorts = T,
-                 runValidation = T,
-                 packageResults = F,
-                 minCellCount = 5,
-                 sampleSize = NULL)
+                                 databaseName = databaseName,
+                                 cdmDatabaseSchema = cdmDatabaseSchema,
+                                 cohortDatabaseSchema = cohortDatabaseSchema,
+                                 oracleTempSchema = oracleTempSchema,
+                                 cohortTable = cohortTable,
+                                 outputFolder = outputFolder,
+                                 createCohorts = createCohorts,
+                                 runValidation = runValidation,
+                                 runSimple = runSimple,
+                                 predictSevereAtOutpatientVisit = TRUE,
+                                 packageResults = packageResults,
+                                 minCellCount = minCellCount,
+                                 sampleSize = NULL)
+
                  
 # If the validation study runs to completion and returns results, package it up ready to share with the study owner (but remove counts less than 10) by running:
+
 SentHomeValidation::execute(connectionDetails = connectionDetails,
-                 databaseName = databaseName,
-                 cdmDatabaseSchema = cdmDatabaseSchema,
-                 cohortDatabaseSchema = cohortDatabaseSchema,
-                 oracleTempSchema = oracleTempSchema,
-                 cohortTable = cohortTable,
-                 outputFolder = outputFolder,
-                 createCohorts = F,
-                 runValidation = F,
-                 packageResults = T,
-                 minCellCount = 10,
-                 sampleSize = NULL)
+               databaseName = databaseName,
+               cdmDatabaseSchema = cdmDatabaseSchema,
+               cohortDatabaseSchema = cohortDatabaseSchema,
+               oracleTempSchema = oracleTempSchema,
+               cohortTable = cohortTable,
+               outputFolder = outputFolder,
+               createCohorts = F,
+               runValidation = F,
+               runSimple = F,
+               predictSevereAtOutpatientVisit = TRUE,
+               packageResults = T,
+               minCellCount = minCellCount,
+               sampleSize = NULL)
+
                  
                  
 # If your target cohort is large use the sampleSize setting to sample from the cohort:
 SentHomeValidation::execute(connectionDetails = connectionDetails,
-                 databaseName = databaseName,
+                 databaseName = cdmDatabaseName,
                  cdmDatabaseSchema = cdmDatabaseSchema,
                  cohortDatabaseSchema = cohortDatabaseSchema,
                  oracleTempSchema = oracleTempSchema,
@@ -130,6 +145,8 @@ SentHomeValidation::execute(connectionDetails = connectionDetails,
                  outputFolder = outputFolder,
                  createCohorts = T,
                  runValidation = T,
+                 runSimple = F,
+                 predictSevereAtOutpatientVisit = TRUE,
                  packageResults = F,
                  minCellCount = 10,
                  sampleSize = 1000000)
@@ -152,7 +169,10 @@ library("OhdsiSharing")
 privateKeyFileName <- "message us for this"
 userName <- "message us for this"
 fileName <- file.path(outputFolder, paste0(databaseName,'.zip'))
-sftpUploadFile(privateKeyFileName, userName, fileName)
+sftpUploadFile(privateKeyFileName = privateKeyFileName, 
+               userName = userName, 
+               fileName = fileName,
+               remoteFolder = file.path("./covid19PredSentHomeVal", cdmDatabaseName) 
 ```
 
 
