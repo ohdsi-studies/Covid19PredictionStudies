@@ -45,7 +45,7 @@ predictSimple <- function(connectionDetails,
   if(is.null(plpData)){return(NULL)}
   
   ParallelLogger::logInfo("Creating population")
-  population <- PatientLevelPrediction::createStudyPopulation(plpData = plpData, 
+  population <- tryCatch({PatientLevelPrediction::createStudyPopulation(plpData = plpData, 
                                                               outcomeId = outcomeIds,
                                                               riskWindowStart = riskWindowStart,
                                                               startAnchor = startAnchor,
@@ -56,7 +56,12 @@ predictSimple <- function(connectionDetails,
                                                               priorOutcomeLookback = priorOutcomeLookback,
                                                               requireTimeAtRisk = requireTimeAtRisk,
                                                               minTimeAtRisk = minTimeAtRisk,
-                                                              includeAllOutcomes = includeAllOutcomes)
+                                                              includeAllOutcomes = includeAllOutcomes)},
+               finally= ParallelLogger::logTrace('Done pop.'), 
+               error= function(cond){ParallelLogger::logTrace(paste0('Error with pop:',cond));return(NULL)})
+  
+  if(is.null(population)){return(NULL)}
+        
   
   
   # apply the model:
@@ -91,7 +96,7 @@ predictSimple <- function(connectionDetails,
   
   result$covariateSummary <- merge(result$covariateSummary, result$model$model[,c('covariateId', 'points')], by ='covariateId')
   result$covariateSummary$covariateValue = result$covariateSummary$points
-  
+ 
  return(result)
   }
 
