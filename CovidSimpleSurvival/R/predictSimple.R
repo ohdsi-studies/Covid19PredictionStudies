@@ -45,7 +45,7 @@ predictSimple <- function(connectionDetails,
   
   ParallelLogger::logInfo("Creating population")
   ParallelLogger::logInfo(paste0("TAR:", startAnchor,'+',riskWindowStart,'-', endAnchor,'+',riskWindowEnd))
-  population <- PatientLevelPrediction::createStudyPopulation(plpData = plpData, 
+  population <- tryCatch({ PatientLevelPrediction::createStudyPopulation(plpData = plpData, 
                                                               outcomeId = outcomeIds,
                                                               riskWindowStart = riskWindowStart,
                                                               startAnchor = startAnchor,
@@ -56,7 +56,11 @@ predictSimple <- function(connectionDetails,
                                                               priorOutcomeLookback = priorOutcomeLookback,
                                                               requireTimeAtRisk = requireTimeAtRisk,
                                                               minTimeAtRisk = minTimeAtRisk,
-                                                              includeAllOutcomes = includeAllOutcomes)
+                                                              includeAllOutcomes = includeAllOutcomes) },                                                     
+               finally= ParallelLogger::logTrace('Done pop.'), 
+               error= function(cond){ParallelLogger::logTrace(paste0('Error with pop:',cond));return(NULL)})
+  
+  if(is.null(population)){return(NULL)}
   
   
   # apply the model:
