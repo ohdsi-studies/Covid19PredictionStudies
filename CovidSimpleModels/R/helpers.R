@@ -65,23 +65,40 @@ getModel <- function(model = 'SimpleModel.csv'){
 getPredict <- function(model){
   predictExisting <- function(plpData, population){
     coefficients <- model
-    
-    prediction <- merge(plpData$covariates, ff::as.ffdf(coefficients), by = "covariateId")
-    prediction$value <- prediction$covariateValue * prediction$points
-    prediction <- PatientLevelPrediction:::bySumFf(prediction$value, prediction$rowId)
-    colnames(prediction) <- c("rowId", "value")
-    prediction <- merge(population, prediction, by ="rowId", all.x = TRUE)
-    prediction$value[is.na(prediction$value)] <- 0
-    
-    # add any final mapping here (e.g., add intercept and mapping)
-    prediction$value <- prediction$value + model$points[model$covariateId==0]
-    prediction$value <- prediction$value/10
-    prediction$value <- 1/(1+exp(-1*prediction$value))
-    
-    scaleVal <- max(prediction$value)
-    if(scaleVal>1){
-      prediction$value <- prediction$value/scaleVal
+      
+    if('covariateData'%in%names(plpData)){
+      plpData$covariateData$coefficients <- tibble::as_tibble(coefficients)
+      on.exit(plpData$covariateData$coefficients <- NULL)
+      
+      prediction <- plpData$covariateData$covariates %>% 
+        dplyr::inner_join(plpData$covariateData$coefficients, by = "covariateId") %>%
+        dplyr::mutate(value = covariateValue*points) %>%
+        dplyr::select(rowId, value) %>%
+        dplyr::group_by(rowId) %>%
+        dplyr::summarise(value = sum(value, na.rm = TRUE)) %>% dplyr::collect()
+      
+      
+    } else{
+      
+      prediction <- merge(plpData$covariates, ff::as.ffdf(coefficients), by = "covariateId")
+      prediction$value <- prediction$covariateValue * prediction$points
+      prediction <- PatientLevelPrediction:::bySumFf(prediction$value, prediction$rowId)
+      colnames(prediction) <- c("rowId", "value")
     }
+    
+    
+      prediction <- merge(population, prediction, by ="rowId", all.x = TRUE)
+      prediction$value[is.na(prediction$value)] <- 0
+      
+      # add any final mapping here (e.g., add intercept and mapping)
+      prediction$value <- prediction$value + model$points[model$covariateId==0]
+      prediction$value <- prediction$value/10
+      prediction$value <- 1/(1+exp(-1*prediction$value))
+      
+      scaleVal <- max(prediction$value)
+      if(scaleVal>1){
+        prediction$value <- prediction$value/scaleVal
+      }
     
     attr(prediction, "metaData") <- list(predictionType = 'binary', scale = scaleVal)
     
