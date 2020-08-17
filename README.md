@@ -1,7 +1,7 @@
 Development and validation of complex and simple patient-level prediction models for predicting various outcomes in COVID patients: a rapid network study to inform the management of COVID-19
 =============
 
-<img src="https://img.shields.io/badge/Study%20Status-Started-blue.svg" alt="Study Status: Started">
+<img src="https://img.shields.io/badge/Study%20Status-Results%20Available-yellow.svg" alt="Study Status: Results Available"> 
 
 - Analytics use case(s): **Patient-Level Prediction**
 - Study type: **Clinical Application**
@@ -11,8 +11,8 @@ Development and validation of complex and simple patient-level prediction models
 - Study start date: **Mar 26, 2020**
 - Study end date: **-**
 - Protocol: **[Word docment](https://github.com/ohdsi-studies/Covid19PredictionStudies/blob/master/HospitalizationInSymptomaticPatients/docs/PLP_protocol_Q1%2BQ2_20200329.docx)**
-- Publications: **-**
-- Results explorer: **-**
+- Publications: **[Simple Models](https://www.medrxiv.org/content/10.1101/2020.05.26.20112649v4) - [C19 Validation](https://www.medrxiv.org/content/10.1101/2020.06.15.20130328v1)**
+- Results explorer: **[Simple Models](http://evidence.ohdsi.org:3838/Covid19CoverPrediction/) - [C19 Validation](http://evidence.ohdsi.org:3838/C19validation/)**
 
 The objective of this study is to develop and validate various patient-level prediction models for COVID-19 patients. 
 
