@@ -1,5 +1,5 @@
 {
-  "analysisId": "critial_at_outpatient_visit",
+  "analysisId": "Analysis_crit_at_outpat",
   "analysisSource": "",
   "developmentDatabase": "OHDSI",
   "attrition": {
