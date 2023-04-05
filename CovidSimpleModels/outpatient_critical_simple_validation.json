@@ -54,7 +54,7 @@
   "moduleSpecifications": [
     {
       "module": "CohortGeneratorModule",
-      "version": "0.1.0",
+      "version": "0.0.16",
       "remoteRepo": "github.com",
       "remoteUsername": "ohdsi",
       "settings": {
@@ -65,7 +65,7 @@
     },
     {
       "module": "ModelTransferModule",
-      "version": "0.0.2",
+      "version": "0.0.3",
       "remoteRepo": "github.com",
       "remoteUsername": "ohdsi",
       "settings": {
@@ -87,7 +87,7 @@
     },
     {
       "module": "PatientLevelPredictionValidationModule",
-      "version": "0.0.5",
+      "version": "0.0.6",
       "remoteRepo": "github.com",
       "remoteUsername": "ohdsi",
       "settings": [
