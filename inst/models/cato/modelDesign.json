@@ -185,7 +185,7 @@
   "splitSettings": {
     "test": 0.25,
     "train": 0.75,
-    "seed": 50811,
+    "seed": 94759,
     "nfold": 3,
     "attr_class": "splitSettings",
     "attr_fun": "randomSplitter"
