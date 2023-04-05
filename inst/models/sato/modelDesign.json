@@ -1,0 +1,203 @@
+{
+  "targetId": 1782435,
+  "outcomeId": 1782447,
+  "restrictPlpDataSettings": {
+    "studyStartDate": "",
+    "studyEndDate": "",
+    "firstExposureOnly": false,
+    "washoutPeriod": 0,
+    "sampleSize": null,
+    "attr_class": "restrictPlpDataSettings"
+  },
+  "covariateSettings": [
+    {
+      "temporal": false,
+      "temporalSequence": false,
+      "DemographicsGender": true,
+      "DemographicsAgeGroup": true,
+      "longTermStartDays": -365,
+      "mediumTermStartDays": -180,
+      "shortTermStartDays": -30,
+      "endDays": 0,
+      "includedCovariateConceptIds": [],
+      "addDescendantsToInclude": false,
+      "excludedCovariateConceptIds": [],
+      "addDescendantsToExclude": false,
+      "includedCovariateIds": [],
+      "attr_class": "covariateSettings",
+      "attr_fun": "getDbDefaultCovariateData"
+    },
+    {
+      "covariateName": "history of cancer",
+      "covariateId": 178243701699,
+      "cohortDatabaseSchema": "",
+      "cohortTable": "",
+      "cohortId": 1782437,
+      "startDay": -9999,
+      "endDays": -1,
+      "count": false,
+      "ageInteraction": false,
+      "lnAgeInteraction": false,
+      "analysisId": 699,
+      "attr_class": "covariateSettings",
+      "attr_fun": "PatientLevelPrediction::getCohortCovariateData"
+    },
+    {
+      "covariateName": "history of COPD",
+      "covariateId": 178243801699,
+      "cohortDatabaseSchema": "",
+      "cohortTable": "",
+      "cohortId": 1782438,
+      "startDay": -9999,
+      "endDays": -1,
+      "count": false,
+      "ageInteraction": false,
+      "lnAgeInteraction": false,
+      "analysisId": 699,
+      "attr_class": "covariateSettings",
+      "attr_fun": "PatientLevelPrediction::getCohortCovariateData"
+    },
+    {
+      "covariateName": "history of diabetes",
+      "covariateId": 178243901699,
+      "cohortDatabaseSchema": "",
+      "cohortTable": "",
+      "cohortId": 1782439,
+      "startDay": -9999,
+      "endDays": -1,
+      "count": false,
+      "ageInteraction": false,
+      "lnAgeInteraction": false,
+      "analysisId": 699,
+      "attr_class": "covariateSettings",
+      "attr_fun": "PatientLevelPrediction::getCohortCovariateData"
+    },
+    {
+      "covariateName": "history of heart disease",
+      "covariateId": 178244001699,
+      "cohortDatabaseSchema": "",
+      "cohortTable": "",
+      "cohortId": 1782440,
+      "startDay": -9999,
+      "endDays": -1,
+      "count": false,
+      "ageInteraction": false,
+      "lnAgeInteraction": false,
+      "analysisId": 699,
+      "attr_class": "covariateSettings",
+      "attr_fun": "PatientLevelPrediction::getCohortCovariateData"
+    },
+    {
+      "covariateName": "history of hyperlipidemia",
+      "covariateId": 178244101699,
+      "cohortDatabaseSchema": "",
+      "cohortTable": "",
+      "cohortId": 1782441,
+      "startDay": -9999,
+      "endDays": -1,
+      "count": false,
+      "ageInteraction": false,
+      "lnAgeInteraction": false,
+      "analysisId": 699,
+      "attr_class": "covariateSettings",
+      "attr_fun": "PatientLevelPrediction::getCohortCovariateData"
+    },
+    {
+      "covariateName": "history of hypertension",
+      "covariateId": 178244201699,
+      "cohortDatabaseSchema": "",
+      "cohortTable": "",
+      "cohortId": 1782442,
+      "startDay": -9999,
+      "endDays": -1,
+      "count": false,
+      "ageInteraction": false,
+      "lnAgeInteraction": false,
+      "analysisId": 699,
+      "attr_class": "covariateSettings",
+      "attr_fun": "PatientLevelPrediction::getCohortCovariateData"
+    },
+    {
+      "covariateName": "history of kidney disease",
+      "covariateId": 178244301699,
+      "cohortDatabaseSchema": "",
+      "cohortTable": "",
+      "cohortId": 1782443,
+      "startDay": -9999,
+      "endDays": -1,
+      "count": false,
+      "ageInteraction": false,
+      "lnAgeInteraction": false,
+      "analysisId": 699,
+      "attr_class": "covariateSettings",
+      "attr_fun": "PatientLevelPrediction::getCohortCovariateData"
+    }
+  ],
+  "populationSettings": {
+    "binary": true,
+    "includeAllOutcomes": true,
+    "firstExposureOnly": false,
+    "washoutPeriod": 0,
+    "removeSubjectsWithPriorOutcome": true,
+    "priorOutcomeLookback": 99999,
+    "requireTimeAtRisk": false,
+    "minTimeAtRisk": 1,
+    "riskWindowStart": 0,
+    "startAnchor": "cohort start",
+    "riskWindowEnd": 30,
+    "endAnchor": "cohort start",
+    "restrictTarToCohortEnd": false,
+    "attr_class": "populationSettings"
+  },
+  "sampleSettings": [
+    {
+      "numberOutcomestoNonOutcomes": 1,
+      "sampleSeed": 1,
+      "attr_class": "sampleSettings",
+      "attr_fun": "sameData"
+    }
+  ],
+  "featureEngineeringSettings": [
+    {
+      "attr_class": "featureEngineeringSettings",
+      "attr_fun": "sameData"
+    }
+  ],
+  "preprocessSettings": {
+    "minFraction": 0.001,
+    "normalize": true,
+    "removeRedundancy": true,
+    "attr_class": "preprocessSettings"
+  },
+  "modelSettings": {
+    "fitFunction": "NA",
+    "param": {
+      "attr_settings": {
+        "modelType": "GLM",
+        "seed": 1,
+        "name": "Existing GLM"
+      },
+      "attr_modelType": "binary",
+      "attr_saveType": "RtoJson"
+    },
+    "attr_class": "modelSettings"
+  },
+  "splitSettings": {
+    "test": 0.25,
+    "train": 0.75,
+    "seed": 14250,
+    "nfold": 3,
+    "attr_class": "splitSettings",
+    "attr_fun": "randomSplitter"
+  },
+  "executeSettings": {
+    "runSplitData": true,
+    "runSampleData": true,
+    "runfeatureEngineering": true,
+    "runPreprocessData": true,
+    "runModelDevelopment": true,
+    "runCovariateSummary": true,
+    "attr_class": "executeSettings"
+  },
+  "attr_class": "modelDesign"
+}

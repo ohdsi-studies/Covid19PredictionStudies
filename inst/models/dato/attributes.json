@@ -1,0 +1,6 @@
+{
+  "class": "plpModel",
+  "predictionFunction": "predictGLM",
+  "modelType": "binary",
+  "saveType": "RtoJson"
+}
