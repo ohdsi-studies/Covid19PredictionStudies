@@ -1,38 +1,27 @@
 A Package for Validating the OHDSI Covid-19 Simple Models
 ========================================================
-Instructions on the inputs and outputs of the package: 
-Vignette: [Using the package skeleton for validating exisitng prediction studies](https://raw.githubusercontent.com/OHDSI/SkeletonExistingPredictionModelStudy/master/inst/doc/UsingSkeletonPackage.pdf)
 
-
-Instructions To Install and Run Package From Github
+Instructions To Install Strategus and Run Studies
 ===================
 
-- Make sure you have PatientLevelPrediction installed:
-
+- Install Strategus:
 ```r
-  # get the latest PatientLevelPrediction
-  install.packages("devtools")
-  devtools::install_github("OHDSI/PatientLevelPrediction")
-  # check the package
-  PatientLevelPrediction::checkPlpInstallation()
+
+# Install Strategus
+install.packages('remotes')
+remotes::install_github('ohdsi/Strategus')
+
 ```
 
-- Then install the study package:
+- Execute the study by running the following (but make sure to edit the connection and output settings):
 ```r
-  # install the network package
-  devtools::install_github("ohdsi-studies/Covid19PredictionStudies/CovidSimpleModels")
-```
+##=========== START OF INPUTS ==========
 
-- Execute the study by running the code in (extras/CodeToRun.R) but make sure to edit the settings:
-```r
-library(CovidSimpleModels)
-# USER INPUTS
-#=======================
-# Specify where the temporary files (used by the ff package) will be created:
-options(fftempdir = "location with space to save big data")
+cohortTable <- "plp_covid_simple"
+outputLocation <- './covidSimpleModels'
+minCellCount <- 10
 
-# The folder where the study intermediate and result files will be written:
-outputFolder <- "./CovidSimpleModelsResults"
+connectionDetailsReference <- 'database name'
 
 # Details for connecting to the server:
 dbms <- "you dbms"
@@ -57,103 +46,70 @@ cohortDatabaseSchema <- 'work database schema'
 oracleTempSchema <- NULL
 
 # table name where the cohorts will be generated
-cohortTable <- 'CovidSimpleModelsCohort'
-
-#============== Pick Study Parts To Run: ===========
-createCohorts = TRUE
-predictSevereAtOutpatientVisit = TRUE
-predictCriticalAtOutpatientVisit = TRUE
-predictDeathAtOutpatientVisit = TRUE
-predictCriticalAtInpatientVisit = TRUE
-predictDeathAtInpatientVisit = TRUE
-packageResults = TRUE
-
-minCellCount <- 5
-sampleSize <- NULL
+moduleLocation <- file.path(outputLocation, 'modules')
 
 
-#============== Pick T and O cohorts ===========
+##=========== END OF INPUTS ==========
 
-# [option 1] use default cohorts (same as those used to develop the models)
-usePackageCohorts <- TRUE
+library(Strategus)
 
-# [option 2] use your own specified cohorts (these must be created already)
-# uncomment the line below to set usePackageCohorts as False
-## usePackageCohorts <- FALSE
-newTargetCohortId = 'the cohort definition id for the new target' 
-newOutcomeCohortId = 'the cohort definition id for the new outcome' 
-newCohortDatabaseSchema = 'the database schema containing the cohorts' 
-newCohortTable = 'the table name of the table containing the cohorts' 
-                    
-#=======================
-# TAR settings - recommended to not edit
-#=======================
-riskWindowStart <- 0
-startAnchor <- 'cohort start'
-riskWindowEnd <- 30
-endAnchor <- 'cohort start'
-firstExposureOnly <- F
-removeSubjectsWithPriorOutcome <- F
-priorOutcomeLookback <- 99999
-requireTimeAtRisk <- F
-minTimeAtRisk <- 1
-includeAllOutcomes <- T
+# Note: this environmental variable should be set once for each compute node
+Sys.setenv("INSTANTIATED_MODULES_FOLDER" = file.path(moduleLocation, "StrategusInstantiatedModules"))
 
-execute(connectionDetails = connectionDetails,
-        usePackageCohorts = usePackageCohorts,
-        newTargetCohortId = newTargetCohortId,
-        newOutcomeCohortId = newOutcomeCohortId,
-        newCohortDatabaseSchema = newCohortDatabaseSchema,
-        newCohortTable = newCohortTable,
-                                    cdmDatabaseSchema = cdmDatabaseSchema,
-                                    cdmDatabaseName = cdmDatabaseName,
-                                    cohortDatabaseSchema = cohortDatabaseSchema,
-                                    cohortTable = cohortTable,
-                                    sampleSize = sampleSize,
-                                    riskWindowStart = riskWindowStart,
-                                    startAnchor = startAnchor,
-                                    riskWindowEnd = riskWindowEnd,
-                                    endAnchor = endAnchor,
-                                    firstExposureOnly = firstExposureOnly,
-                                    removeSubjectsWithPriorOutcome = removeSubjectsWithPriorOutcome,
-                                    priorOutcomeLookback = priorOutcomeLookback,
-                                    requireTimeAtRisk = requireTimeAtRisk,
-                                    minTimeAtRisk = minTimeAtRisk,
-                                    includeAllOutcomes = includeAllOutcomes,
-                                    outputFolder = outputFolder,
-                                    createCohorts = createCohorts,
-                                    predictSevereAtOutpatientVisit = predictSevereAtOutpatientVisit,
-                                    predictCriticalAtOutpatientVisit = predictCriticalAtOutpatientVisit,
-                                    predictDeathAtOutpatientVisit = predictDeathAtOutpatientVisit,
-                                    predictCriticalAtInpatientVisit = predictCriticalAtInpatientVisit,
-                                    predictDeathAtInpatientVisit = predictDeathAtInpatientVisit,
-                                    packageResults = packageResults,
-                                    minCellCount = minCellCount,
-                                    verbosity = "INFO",
-                                    cdmVersion = 5)
+for(type in c('outpatient_severe','outpatient_critical', 'outpatient_death', 'inpatient_crit', 'inpatient_death')){
+
+analysisSpecifications <- ParallelLogger::loadSettingsFromJson(
+paste0(
+'/Users/jreps/Documents/GitHub/Covid19PredictionStudies/CovidSimpleModels/',
+type,
+'_simple_validation.json'
+)
+)
+
+cohortTableName <- paste0(cohortTable,'_', type)
+outputLocation <- file.path(outputLocation, type)
+
+storeConnectionDetails(
+  connectionDetails = connectionDetails,
+  connectionDetailsReference = connectionDetailsReference
+)
+
+executionSettings <- createCdmExecutionSettings(
+  connectionDetailsReference = connectionDetailsReference,
+  workDatabaseSchema = workDatabaseSchema,
+  cdmDatabaseSchema = cdmDatabaseSchema,
+  cohortTableNames = CohortGenerator::getCohortTableNames(cohortTable = cohortTableName),
+  workFolder = file.path(outputLocation, "strategusWork"),
+  resultsFolder = file.path(outputLocation, "strategusOutput"),
+  minCellCount = minCellCount
+)
+
+Strategus::execute(
+  analysisSpecifications = analysisSpecifications,
+  executionSettings = executionSettings,
+  executionScriptFolder = file.path(outputLocation, "strategusExecution")
+)
+}
+
 ```
 
 
 Submitting Results
 ===================
 
-Once you have sucessfully executed the study you will find a compressed folder in the location specified '[outputFolder]/[databaseName].zip'.  The study should remove sensitive data but we encourage researchers to also check the contents of this folder (it will contain an rds file with the results which can be loaded via readRDS('[file location]').  
+Once you have sucessfully executed the study you will find five folders inside your specified outputLocation named: 
 
-To send the compressed folder results please message one of the leads (**[jreps](https://forums.ohdsi.org/u/jreps) , [RossW](https://forums.ohdsi.org/u/RossW)**) and we will give you the privateKeyFileName and userName.  You can then run the following R code to share the results:
+* 'outpatient_severe'
+* 'outpatient_critical'
+* 'outpatient_death'
+* 'inpatient_crit'
+* 'inpatient_death'
 
-```r
-# If you don't have the R package OhdsiSharing then install it using github (uncomment the line below)
-# install_github("ohdsi/OhdsiSharing")
+inside each of these folders you will find a folder named "strategusOutput" containing each of the OHDSI analysis modules used in the study (DatabaseMetaData, CohortGeneratorModule_1, ModelTransferModule_2 and PatientLevelPredictionValidationModule_3).  The folder 'PatientLevelPredictionValidationModule_3' will contain a set of csv files with the validation results.  The csv of particular interest is 'evaluation_statistics.csv'.  
 
-library("OhdsiSharing")
-privateKeyFileName <- "message us for this"
-userName <- "message us for this"
-fileName <- file.path(outputFolder, paste0(databaseName,'.zip'))
-sftpUploadFile(privateKeyFileName = privateKeyFileName, 
-               userName = userName, 
-               fileName = fileName,
-               remoteFolder = file.path("./covid19PredCovidSimpleModels", cdmDatabaseName)
-```
 
-# Development status
-Under development.
+
+
+
+
+
