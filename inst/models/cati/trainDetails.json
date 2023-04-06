@@ -1,0 +1,19 @@
+{
+  "analysisId": "Analysis_crit_at_inpat",
+  "analysisSource": "",
+  "developmentDatabase": "OHDSI",
+  "attrition": {
+    "pop": 0,
+    "attr_class": "data.frame",
+    "attr_row.names": 1
+  },
+  "trainingTime": -1,
+  "trainingDate": "2000-01-01",
+  "modelName": "Existing GLM",
+  "finalModelParameters": [],
+  "hyperParamSearch": {
+    "none": 1,
+    "attr_class": "data.frame",
+    "attr_row.names": 1
+  }
+}
