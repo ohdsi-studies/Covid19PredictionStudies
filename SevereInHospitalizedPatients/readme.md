@@ -71,7 +71,7 @@ library(Strategus)
 # Note: this environmental variable should be set once for each compute node
 Sys.setenv("INSTANTIATED_MODULES_FOLDER" = file.path(moduleLocation, "StrategusInstantiatedModules"))
 
-url <- "https://raw.githubusercontent.com/ohdsi-studies/Covid19PredictionStudies/master/SevereInHospitalizedPatients/inst/inpatient_severe_development.json"
+url <- "https://raw.githubusercontent.com/ohdsi-studies/Covid19PredictionStudies/develop/SevereInHospitalizedPatients/inpatient_severe_development.json"
 json <- readLines(file(url))
 json2 <- paste(json, collaplse = '\n')
 analysisSpecifications <- ParallelLogger::convertJsonToSettings(json2)

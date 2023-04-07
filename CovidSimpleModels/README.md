@@ -58,13 +58,18 @@ Sys.setenv("INSTANTIATED_MODULES_FOLDER" = file.path(moduleLocation, "StrategusI
 
 for(type in c('outpatient_severe','outpatient_critical', 'outpatient_death', 'inpatient_crit', 'inpatient_death')){
 
-analysisSpecifications <- ParallelLogger::loadSettingsFromJson(
+url <- (
 paste0(
-'/Users/jreps/Documents/GitHub/Covid19PredictionStudies/CovidSimpleModels/',
+'https://raw.githubusercontent.com/ohdsi-studies/',
+'Covid19PredictionStudies/develop/CovidSimpleModels/',
 type,
 '_simple_validation.json'
 )
 )
+json <- readLines(file(url))
+json2 <- paste(json, collaplse = '\n')
+analysisSpecifications <- ParallelLogger::convertJsonToSettings(json2)
+
 
 cohortTableName <- paste0(cohortTable,'_', type)
 outputLocation <- file.path(outputLocation, type)
